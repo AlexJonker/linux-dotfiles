@@ -29,7 +29,7 @@ then
     mkdir -p ~/Scripts
     cp -a ./scripts/. ~/Scripts/
     
-    mkdir ~/Pictures/Wallpapers
+    mkdir -p ~/Pictures/Screenshots
 
     mkdir -p ~/Pictures/Wallpapers
     cp -a ./Wallpapers/. ~/Pictures/Wallpapers/
