@@ -6,6 +6,8 @@ then
     echo "Continuing..."
 
     swww img ~/Pictures/Wallpapers/ForestHouse.png
+    gsettings set org.gnome.desktop.wm.preferences button-layout "appmenu:close"
+
     bash ~/Scripts/pywal.sh
 
 
