@@ -7,9 +7,6 @@ ranger
 swaync
 waybar
 python-pywal16
-betterdiscordctl
-pywal-discord
-discord
 python-pywalfox
 pywal-spicetify
 nwg-displays
@@ -26,7 +23,7 @@ lsd
 waypaper
 hyprpicker
 otf-codenewroman-nerd
-floorp-bin
+zen-browser-bin
 nemo
 nemo-fileroller
 nemo-preview
