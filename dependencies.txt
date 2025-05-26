@@ -50,3 +50,4 @@ grimblast
 power-profiles-daemon
 nerd-fonts
 dex
+checkupdates-with-aur
