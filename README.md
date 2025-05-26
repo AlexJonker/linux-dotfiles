@@ -30,7 +30,7 @@ bash ./install.sh
 
 ### **2. Configure Display Settings**
 
-After installation, reboot and run the `post-install.sh` script and configure your screen(s) with `nwg-look`
+After installation, reboot and run the `post-install.sh` script
 ```bash
-bash ./post-install.sh && nwg-look
+bash ./post-install.sh
 ```
