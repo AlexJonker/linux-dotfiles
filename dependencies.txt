@@ -52,3 +52,4 @@ nerd-fonts
 dex
 checkupdates-with-aur
 brightnessctl
+noto-fonts-emoji
