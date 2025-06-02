@@ -6,7 +6,7 @@ then
     echo "Continuing..."
 
     gsettings set org.gnome.desktop.wm.preferences button-layout "appmenu:close"
-    swww img ~/Pictures/Wallpapers/wp6451495-purple-minimal-mountain-wallpapers.jpg
+    swww img ~/Pictures/Wallpapers/wallhaven-d6j79o.png
     bash ~/Scripts/pywal.sh
 
 
