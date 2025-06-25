@@ -9,10 +9,6 @@ then
     swww img ~/Pictures/Wallpapers/wallhaven-d6j79o.png
     bash ~/Scripts/pywal.sh
 
-
-    betterdiscordctl install
-    spicetify auto
-
     read -p "Done! do you want to reboot? (y/n): " choice2
     if [[ "$choice2" == "y" || "$choice2" == "Y" ]]
     then
