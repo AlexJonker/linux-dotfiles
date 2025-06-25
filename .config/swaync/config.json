@@ -1,26 +1,27 @@
 {
-    "$schema": "/etc/xdg/swaync/configSchema.json",
-    "positionX": "left",
-    "positionY": "bottom",
-    "layer": "overlay",
-    "control-center-layer": "top",
-    "layer-shell": true,
-    "cssPriority": "application",
-    "control-center-width": 350,
-    "control-center-margin-top": 10,
-    "control-center-margin-bottom": 10,
+  	"$schema": "/etc/xdg/swaync/configSchema.json",
+  	"positionX": "left",
+  	"positionY": "top",
+  	"layer": "overlay",
+  	"control-center-layer": "top",
+  	"layer-shell": true,
+ 	"cssPriority": "application",
+    "control-center-margin-top": 5,
+    "control-center-margin-bottom": 0,
     "control-center-margin-right": 0,
     "control-center-margin-left": 0,
-    "notification-2fa-action": true,
-    "notification-inline-replies": true,
-    "notification-window-width": 350,
-    "notification-icon-size": 60,
-    "notification-body-image-height":  180,
-    "notification-body-image-width": 180,
-    "timeout": 12,
-    "timeout-low": 6,
-    "timeout-critical": 1,
-    "fit-to-screen": true,
+  	"notification-2fa-action": true,
+  	"notification-inline-replies": false,
+    "notification-icon-size": 30,
+    "notification-body-image-height": 100,
+    "notification-body-image-width": 200,
+    "timeout": 6,
+    "timeout-low": 3,
+    "timeout-critical": 0,
+    "fit-to-screen": false,
+    "control-center-width": 350,
+    "control-center-height": 1000,
+    "notification-window-width": 400,
     "keyboard-shortcuts": true,
     "image-visibility": "when available",
     "transition-time": 200,
@@ -28,95 +29,68 @@
     "hide-on-action": true,
     "script-fail-notify": true,
     "widgets": [
-        "mpris",
+       	"dnd",
+        "buttons-grid",
+		"mpris",
+    	"volume", 
+   	 	"backlight",
         "title",
-        "notifications",
-        "volume",
-        "backlight",
-        "buttons-grid"
+        "notifications"
     ],
     "widget-config": {
         "title": {
-            "text": "Notification Center",
+            "text": "Notifications",
             "clear-all-button": true,
-            "button-text": "󰆴"
+            "button-text": "Clear"
+        },
+        "dnd": {
+            "text": "Do Not Disturb"
         },
         "label": {
-            "max-lines":1,
-            "text": "Notification Center!"
+            "max-lines": 1,
+            "text": "Notification"
         },
-
         "mpris": {
-            "image-size": 80,
+            "image-size": 60,
             "image-radius": 0
         },
         "volume": {
-            "label": "󰕾 "
+            "label": "󰕾"
         },
         "backlight": {
-            "label": "󰃟 "
+            "label": "󰃟"
         },
         "buttons-grid": {
             "actions": [
                 {
-                    "label": "󰝟",
-                    "command": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-                    "type": "toggle"
+                    "label": "󰐥",
+                    "command": "systemctl poweroff"
                 },
                 {
-                    "label": "󰍭",
-                    "command": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-                    "type": "toggle"
-                },
-
-                {
-                    "label": "",
-                    "command": "kitty nmtui"
+                    "label": "󰜉",
+                    "command": "systemctl reboot"
                 },
                 {
-                    "label": "",
-                    "command": "blueman-manager"
+                    "label": "󰌾",
+                    "command": "~/.config/hypr/scripts/LockScreen.sh"
                 },
                 {
-                    "label":"󰤄",
-                    "command": "swaync-client -d",
-                    "type":"toggle"
-                },
-
-                {
-                    "label": "󰀟",
-                    "command": "gnome-network-displays"
-                },
-
-                {
-                    "label": "󰈙",
-                    "command": "kitty bash -i -c 'Docs'"
+                    "label": "󰍃",
+                    "command": "hyprctl dispatch exit"
                 },
                 {
-                    "label": "",
-                    "command": "kitty bash -i -c 'Settings'"
-                    
+                    "label": "󰀝",
+                    "command": "~/.config/hypr/scripts/AirplaneMode.sh"
                 },
                 {
-                    "label": "",
-                    "command": "kitty bash -i -c 'tasks'"
-
+                    "label": "󰕾",
+                    "command": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
                 },
                 {
-                    "label": "",
-                    "command": "hyprlock"
-                },
-                {
-                    "label":"",
-                    "command": "reboot"
-                },
-                {
-                    "label":"",
-                    "command": "shutdown now"
+                    "label": "󰍬",
+                    "command": "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
                 }
-
             ]
         }
     }
 }
-
