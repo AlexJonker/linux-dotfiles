@@ -53,3 +53,4 @@ checkupdates-with-aur
 brightnessctl
 noto-fonts-emoji
 kwallet
+xdg-desktop-portal-gtk
