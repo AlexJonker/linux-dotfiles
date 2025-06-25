@@ -24,6 +24,8 @@ then
     # Install dependencies from dependencies.txt
     yay -S --needed --noconfirm - < ./dependencies.txt
 
+    flatpak install flatseal flatsweep -y --system
+
     # Copy configs, scripts, wallpapers, etc.
     cp -a ./configs/. ~/.config/
     mkdir -p ~/Scripts
@@ -41,6 +43,10 @@ then
     settings set org.gnome.desktop.interface icon-theme Tela
     gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice
 
+    # flatpak theming fixes
+    flatpak -u override --filesystem=/usr/share/icons/:ro
+    flatpak -u override --filesystem=xdg-config/gtk-3.0:ro
+    
     # Change shell to fish
     chsh -s $(which fish)
 
