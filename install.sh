@@ -27,7 +27,7 @@ then
     flatpak install flatseal flatsweep -y --system
 
     # Copy configs, scripts, wallpapers, etc.
-    cp -a ./configs/. ~/.config/
+    cp -a ./.config/. ~/.config/
     mkdir -p ~/Scripts
     cp -a ./scripts/. ~/Scripts/
     
