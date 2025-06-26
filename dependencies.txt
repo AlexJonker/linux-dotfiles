@@ -6,7 +6,6 @@ ranger
 swaync
 waybar
 python-pywal16
-python-pywalfox
 pywal-spicetify
 nwg-displays
 spicetify-cli

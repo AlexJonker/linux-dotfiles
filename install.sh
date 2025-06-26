@@ -91,9 +91,6 @@ then
     ln -s ~/.cache/wal/pywal.kvconfig
     ln -s ~/.cache/wal/pywal.svg
 
-    # Install GTK3 themes via Flatpak
-    flatpak install -y --system org.gtk.Gtk3theme.adw-gtk3 org.gtk.Gtk3theme.adw-gtk3-dark
-
     echo "Please reboot and run the post-install.sh script."
 
     # Reboot prompt
