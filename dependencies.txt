@@ -57,3 +57,4 @@ xdg-desktop-portal-gtk
 xdg-desktop-portal-hyprland
 rofi-emoji
 wtype
+cava
