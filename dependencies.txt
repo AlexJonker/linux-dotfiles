@@ -37,7 +37,7 @@ flatpak
 tela-circle-icon-theme-all
 hyprpolkitagent
 xed
-mission-center
+resources
 tela-icon-theme
 bluez-utils
 neovim
