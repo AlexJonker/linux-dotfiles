@@ -8,7 +8,7 @@ then
     cp -a ~/.config ~/.config.backup.$(date +%s)
 
     # Install dependencies from dependencies.txt
-    yay -S --needed --noconfirm - < ./dependencies.txt
+    yay -S --needed --noconfirm --config ./pacman.conf - < ./dependencies.txt
 
     # Copy configs, scripts, wallpapers, etc.
     cp -a ./.config/. ~/.config/
