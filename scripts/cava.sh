@@ -43,7 +43,7 @@ stdbuf -oL cava -p $config_file | while read -r line; do
     
     if [ "$status_cache" = "Playing" ]; then
         bars=$(printf '%s' "$line" | sed "$dict")
-        echo "$artist" "$title" "$bars"
+        echo "$artist" - "$title" "$bars"
     else
         echo "$artist" - "$title"
     fi
