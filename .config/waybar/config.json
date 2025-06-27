@@ -181,7 +181,9 @@
         "position": "top",
         "reload_style_on_change": true,
         "modules-left": [
-            "clock"
+            "clock",
+            "custom/endpoint",
+            "tray"
         ],
         "modules-center": [
             "hyprland/workspaces"
@@ -258,6 +260,14 @@
                 "󰂂",
                 "󰁹"
             ]
+        },
+        "tray": {
+            "icon-size": 14,
+            "spacing": 10
+        },
+        "custom/endpoint": {
+            "format": "|",
+            "tooltip": false
         }
     }
 ]
