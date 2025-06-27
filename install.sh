@@ -1,5 +1,5 @@
 #!/bin/bash
-read -p "This script has not been fully tested, do you still want to continue? (y/n): " choice
+read -p "This script has not been fully tested, do you still want to continue? (y/N): " choice
 
 if [[ "$choice" == "y" || "$choice" == "Y" ]]
 then
@@ -33,8 +33,13 @@ then
     
     mkdir -p ~/Pictures/Screenshots
 
-    mkdir -p ~/Pictures/Wallpapers
-    cp -a ./Wallpapers/. ~/Pictures/Wallpapers/
+    read -p "Do you want to download wallpapers? (y/N): " dl_wallpapers
+    if [[ "$dl_wallpapers" == "y" || "$dl_wallpapers" == "Y" ]]; then
+        git clone https://github.com/AlexJonker/Wallpapers ~/Pictures/Wallpapers
+    else
+        mkdir -p ~/Pictures/Wallpapers
+        cp -a ./Wallpapers/. ~/Pictures/Wallpapers/
+    fi
     cp ./avatar.png ~/Pictures/
 
     # Install system themes
@@ -94,7 +99,7 @@ then
     echo "Please reboot and run the post-install.sh script."
 
     # Reboot prompt
-    read -p "Done! Do you want to reboot? (y/n): " choice2
+    read -p "Done! Do you want to reboot? (y/N): " choice2
     if [[ "$choice2" == "y" || "$choice2" == "Y" ]]
     then
         reboot

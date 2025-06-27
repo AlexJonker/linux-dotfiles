@@ -1,119 +1,175 @@
 @import url('../../.cache/wal/colors-waybar.css');
 
 * {
-    font-size:15px;
+    font-size: 15px;
     font-family: "CodeNewRoman Nerd Font Propo";
 }
-window#waybar{
-    all:unset;
+
+window#waybar {
+    all: unset;
 }
+
 .modules-left {
-    padding:7px;
-    margin:5px;
-    border-radius:10px;
-    background: alpha(@background,.5);
+    padding: 7px;
+    margin: 5px;
+    border-radius: 10px;
+    background: alpha(@background, .5);
     box-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+    border-color: @color9;
+    border-style: solid;
+    border-width: 2px;
 }
+
 .modules-center {
-    padding:7px;
-    margin:5px;
-    border-radius:10px;
-    background: alpha(@background,.5);
+    padding: 7px;
+    margin: 5px;
+    border-radius: 10px;
+    background: alpha(@background, .5);
     box-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+    border-color: @color9;
+    border-style: solid;
+    border-width: 2px;
+
 }
+
 .modules-right {
-    padding:7px;
-    margin:5px;
-    border-radius:10px;
-    background: alpha(@background,.5);
+    padding: 7px;
+    margin: 5px;
+    border-radius: 10px;
+    background: alpha(@background, .5);
     box-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+    border-color: @color9;
+    border-style: solid;
+    border-width: 2px;
+
 }
+
 tooltip {
-    background:@background;
+    background: @background;
     color: @color7;
 }
-#clock:hover, #custom-pacman:hover, #custom-power:hover, #custom-notification:hover,#bluetooth:hover,#network:hover,#battery:hover, #cpu:hover,#memory:hover,#temperature:hover{
+
+#clock:hover,
+#custom-pacman:hover,
+#power-profiles-daemon:hover,
+#custom-notification:hover,
+#bluetooth:hover,
+#network:hover,
+#battery:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover {
     transition: all .3s ease;
-    color:@color9;
+    color: @color9;
 }
+
 #custom-notification {
     padding: 0px 5px;
     transition: all .3s ease;
-    color:@color7;
+    color: @color7;
 }
-#clock{
+
+#clock {
     padding: 0px 5px;
-    color:@color7;
+    color: @color7;
     transition: all .3s ease;
 }
-#custom-pacman{
+
+#custom-pacman {
     padding: 0px 5px;
     transition: all .3s ease;
-    color:@color7;
+    color: @color7;
 
 }
 
-#custom-power{
+#power-profiles-daemon {
     padding: 0px 5px;
     transition: all .3s ease;
-    color:@color7;
+    color: @color7;
 }
 
 #workspaces {
     padding: 0px 5px;
+    text-shadow: none;
 }
+
 #workspaces button {
-    all:unset;
-    padding: 0px 5px;
-    color: alpha(@color9,.4);
-    transition: all .2s ease;
+    all: unset;
+    margin: 0px 3px;
+    padding: 0px 2px;
+    color: rgba(0, 0, 0, 0);
+    text-shadow: none;
+    background: @color2;
+    border-radius: 50%;
+    transition: all .3s;
+    min-width: 15px;
 }
+
 #workspaces button:hover {
-    color:rgba(0,0,0,0);
+    color: rgba(0, 0, 0, 0);
     border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
-    transition: all 1s ease;
+    background: @color1;
 }
+
 #workspaces button.active {
-    color: @color9;
     border: none;
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+    padding: 0px 2px;
+    border-radius: 10px;
+    background: @color1;
+    min-width: 30px;
 }
+
+#workspaces button.active:hover {
+    background: @color2;
+}
+
 #workspaces button.empty {
-    color: rgba(0,0,0,0);
+    color: transparent;
     border: none;
-    text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .2);
+    background: alpha(@background, .5);
+
 }
+
 #workspaces button.empty:hover {
-    color: rgba(0,0,0,0);
     border: none;
     text-shadow: 0px 0px 1.5px rgba(0, 0, 0, .5);
-    transition: all 1s ease;
+    background: alpha(@color1, .5);
+    color: alpha(@color1, .5);
 }
+
 #workspaces button.empty.active {
-    color: @color9;
+    color: rgba(0, 0, 0, 0);
     border: none;
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, .5);
+    text-shadow: none;
+    background: @color1;
 }
-#bluetooth{
+
+#workspaces button.empty.active:hover {
+    background: @color2;
+}
+
+#bluetooth {
     padding: 0px 5px;
     transition: all .3s ease;
-    color:@color7;
+    color: @color7;
 
 }
-#network{
+
+#network {
     padding: 0px 5px;
     transition: all .3s ease;
-    color:@color7;
+    color: @color7;
 
 }
-#battery{
+
+#battery {
     padding: 0px 5px;
     transition: all .3s ease;
-    color:@color7;
+    color: @color7;
 
 
 }
+
 #battery.charging {
     color: #26A65B;
 }
@@ -130,45 +186,50 @@ tooltip {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-#group-expand{
-    padding: 0px 5px;
-    transition: all .3s ease; 
-}
-#custom-expand{
-    padding: 0px 5px;
-    color:alpha(@foreground,.2);
-    text-shadow: 0px 0px 2px rgba(0, 0, 0, .7);
-    transition: all .3s ease; 
-}
-#custom-expand:hover{
-    color:rgba(255,255,255,.2);
-    text-shadow: 0px 0px 2px rgba(255, 255, 255, .5);
-}
-#custom-colorpicker{
+
+#custom-colorpicker {
     padding: 0px 5px;
 }
-#cpu,#memory,#temperature{
+
+#cpu,
+#memory,
+#temperature {
     padding: 0px 5px;
-    transition: all .3s ease; 
-    color:@color7;
+    transition: all .3s ease;
+    color: @color7;
 
 }
-#custom-endpoint{
-    color:transparent;
+
+#custom-endpoint {
+    color: @color9;
     text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 1);
 
 }
-#tray{
+
+#tray {
     padding: 0px 5px;
-    transition: all .3s ease; 
+    transition: all .3s ease;
 
 }
+
 #tray menu * {
     padding: 0px 5px;
-    transition: all .3s ease; 
+    transition: all .3s ease;
 }
 
 #tray menu separator {
     padding: 0px 5px;
-    transition: all .3s ease; 
+    transition: all .3s ease;
+}
+
+#custom-cava {
+    padding: 0px 5px;
+    transition: all .3s ease;
+    color: @color7;
+}
+
+#custom-playerinfo {
+    padding: 0px 5px;
+    transition: all .3s ease;
+    color: @color7;
 }

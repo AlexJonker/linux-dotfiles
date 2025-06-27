@@ -13,8 +13,6 @@ cp "$wallpaper" /usr/share/sddm/themes/corners/backgrounds/current_wallpaper
 
 
 wal -i "$wallpaper" &&
-pywalfox update
-pywal-discord
 killall swaync && swaync &
 gradience-cli apply -n pywal --gtk both
 

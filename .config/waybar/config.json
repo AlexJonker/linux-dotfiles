@@ -1,0 +1,263 @@
+[
+    {
+        "height": 42,
+        "layer": "bottom",
+        "position": "top",
+        "reload_style_on_change": true,
+        "modules-left": [
+            "custom/notification",
+            "clock",
+            "custom/endpoint",
+            "tray",
+            "custom/endpoint",
+            "custom/cava"
+        ],
+        "modules-center": [
+            "hyprland/workspaces"
+        ],
+        "modules-right": [
+            "custom/colorpicker",
+            "cpu",
+            "memory",
+            "temperature",
+            "bluetooth",
+            "network",
+            "custom/endpoint",
+            "power-profiles-daemon",
+            "custom/pacman",
+            "battery"
+        ],
+        "hyprland/workspaces": {
+            "format": "{icon}",
+            "format-icons": {
+                "active": "",
+                "default": "",
+                "empty": ""
+            },
+            "persistent-workspaces": {
+                "*": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ]
+            }
+        },
+        "custom/notification": {
+            "tooltip": false,
+            "format": "",
+            "on-click": "swaync-client -t -sw",
+            "escape": true
+        },
+        "clock": {
+            "format": "{:%H:%M:%S}",
+            "interval": 1,
+            "format-alt": "{:%A, %B %d, %Y}",
+            "tooltip-format": "<tt><small>{calendar}</small></tt>",
+            "calendar": {
+                "mode": "month",
+                "mode-mon-col": 3,
+                "weeks-pos": "right",
+                "on-scroll": 1,
+                "format": {
+                    "today": "<span><b><u>{}</u></b></span>"
+                }
+            },
+            "actions": {
+                "on-click-right": "mode",
+                "on-scroll-up": "tz_up",
+                "on-scroll-down": "tz_down",
+                "on-scroll-up": "shift_up",
+                "on-scroll-down": "shift_down"
+            }
+        },
+        "network": {
+            "format-wifi": "",
+            "format-ethernet": "",
+            "format-disconnected": "",
+            "tooltip-format-disconnected": "Error",
+            "tooltip-format-wifi": "{essid} ({signalStrength}%) \n{ipaddr}",
+            "tooltip-format-ethernet": "{ifname} 🖧\n{ipaddr}"
+        },
+        "bluetooth": {
+            "format-on": "󰂯",
+            "format-off": "BT-off",
+            "format-disabled": "󰂲",
+            "format-connected-battery": "{device_battery_percentage}% 󰂯",
+            "format-alt": "{device_alias} 󰂯",
+            "format-no-controller": "",
+            "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+            "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+            "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
+            "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%"
+        },
+        "battery": {
+            "interval": 30,
+            "states": {
+                "good": 95,
+                "warning": 30,
+                "critical": 20
+            },
+            "format": "{capacity}% {icon}",
+            "format-charging": "{capacity}% 󰂄",
+            "format-plugged": "{capacity}% 󰂄 ",
+            "format-icons": [
+                "󰁻",
+                "󰁼",
+                "󰁾",
+                "󰂀",
+                "󰂂",
+                "󰁹"
+            ]
+        },
+        "power-profiles-daemon": {
+            "format": "{icon}",
+            "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+            "tooltip": true,
+            "format-icons": {
+                "default": "",
+                "performance": "",
+                "balanced": "",
+                "power-saver": ""
+            }
+        },
+        "custom/pacman": {
+            "format": "{icon}{0}",
+            "return-type": "json",
+            "format-icons": {
+                "pending-updates": " ",
+                "updated": ""
+            },
+            "exec-if": "which waybar-updates",
+            "exec": "waybar-updates --flatpak",
+            "on-click": "kitty bash -c 'echo Sigma updater; yay && flatpak update; read -n 1 -s -r -p \"🎉 Done! Press any key to close…\"'"
+        },
+        "custom/endpoint": {
+            "format": "|",
+            "tooltip": false
+        },
+        "custom/colorpicker": {
+            "format": "{}",
+            "return-type": "json",
+            "interval": "once",
+            "exec": "~/Scripts/colorpicker.sh -j",
+            "on-click": "~/Scripts/colorpicker.sh",
+            "signal": 1
+        },
+        "cpu": {
+            "format": "󰻠",
+            "tooltip": true
+        },
+        "memory": {
+            "format": ""
+        },
+        "temperature": {
+            "critical-threshold": 80,
+            "format": ""
+        },
+        "tray": {
+            "icon-size": 14,
+            "spacing": 10
+        },
+        "custom/cava": {
+            "format": "{}",
+            "exec": "~/Scripts/cava.sh",
+            "on-click": "playerctl play-pause"
+        }
+    },
+
+
+
+
+
+
+
+
+    
+    {
+        "height": 42,
+        "layer": "bottom",
+        "position": "top",
+        "reload_style_on_change": true,
+        "modules-left": [
+            "clock"
+        ],
+        "modules-center": [
+            "hyprland/workspaces"
+        ],
+        "modules-right": [
+            "custom/pacman",
+            "battery"
+        ],
+        "hyprland/workspaces": {
+            "format": "{icon}",
+            "format-icons": {
+                "active": "",
+                "default": "",
+                "empty": ""
+            },
+            "persistent-workspaces": {
+                "*": [
+                    6,
+                    7,
+                    8,
+                    9,
+                    10
+                ]
+            }
+        },
+        "clock": {
+            "format": "{:%H:%M:%S}",
+            "interval": 1,
+            "format-alt": "{:%A, %B %d, %Y}",
+            "tooltip-format": "<tt><small>{calendar}</small></tt>",
+            "calendar": {
+                "mode": "month",
+                "mode-mon-col": 3,
+                "weeks-pos": "right",
+                "on-scroll": 1,
+                "format": {
+                    "today": "<span><b><u>{}</u></b></span>"
+                }
+            },
+            "actions": {
+                "on-click-right": "mode",
+                "on-scroll-up": "tz_up",
+                "on-scroll-down": "tz_down",
+                "on-scroll-up": "shift_up",
+                "on-scroll-down": "shift_down"
+            }
+        },
+        "custom/pacman": {
+            "format": "{icon}{0}",
+            "return-type": "json",
+            "format-icons": {
+                "pending-updates": " ",
+                "updated": ""
+            },
+            "exec-if": "which waybar-updates",
+            "exec": "waybar-updates --flatpak",
+            "on-click": "kitty bash -c 'echo Sigma updater; yay && flatpak update; read -n 1 -s -r -p \"🎉 Done! Press any key to close…\"'"
+        },
+        "battery": {
+            "interval": 30,
+            "states": {
+                "good": 95,
+                "warning": 30,
+                "critical": 20
+            },
+            "format": "{capacity}% {icon}",
+            "format-charging": "{capacity}% 󰂄",
+            "format-plugged": "{capacity}% 󰂄 ",
+            "format-icons": [
+                "󰁻",
+                "󰁼",
+                "󰁾",
+                "󰂀",
+                "󰂂",
+                "󰁹"
+            ]
+        }
+    }
+]
