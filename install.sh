@@ -33,7 +33,7 @@ then
     
     mkdir -p ~/Pictures/Screenshots
 
-    read -p "Do you want to download wallpapers? (y/N): " dl_wallpapers
+    read -p "Do you want to download wallpapers? (6GB) (y/N): " dl_wallpapers
     if [[ "$dl_wallpapers" == "y" || "$dl_wallpapers" == "Y" ]]; then
         git clone https://github.com/AlexJonker/Wallpapers ~/Pictures/Wallpapers
     else
