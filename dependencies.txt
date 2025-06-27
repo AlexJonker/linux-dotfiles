@@ -2,7 +2,6 @@ rofi-wayland
 hyprland
 hypridle
 hyprlock
-ranger
 swaync
 waybar
 python-pywal16
