@@ -1,6 +1,7 @@
 # Hyprland Dotfiles Setup
 
 <img src="./src/preview.png">
+<img src="./src/preview2.png">
 
 ## FEATURES
 - **Dual monitor support for waybar**
