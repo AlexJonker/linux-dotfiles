@@ -2,9 +2,11 @@
 
 <img src="./src/preview.png">
 
+## FEATURES
+- **Dual monitor support for waybar**
+- **Pywal with waypaper**
+
 ## TODO
-- **Customize Waybar**
-- **Functioning buttons in settings bar**
 - **[this](https://github.com/eylles/pywal16-libadwaita/issues/10) in the install script**
 
 ---

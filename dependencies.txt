@@ -48,8 +48,10 @@ grimblast
 power-profiles-daemon
 nerd-fonts
 dex
-checkupdates-with-aur
+waybar-updates
 brightnessctl
 noto-fonts-emoji
 kwallet
+xdg-desktop-portal
 xdg-desktop-portal-gtk
+xdg-desktop-portal-hyprland
