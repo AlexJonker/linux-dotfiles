@@ -14,6 +14,7 @@ then
     cd ~/.config/presets/user
     ln -s ~/.cache/wal/pywal.json
 
+    mkdir -p ~/.config/Kvantum
     cd ~/.config/Kvantum
     mkdir -p pywal
     cd pywal
@@ -21,6 +22,8 @@ then
     ln -s ~/.cache/wal/pywal.svg
     ln -s ~/.cache/wal/pywal.kvconfig
     ln -s ~/.cache/wal/pywal.svg
+
+    bash ~/Scripts/pywal.sh    # run again but with the gtk theming fixes
 
     read -p "Done! do you want to reboot? (y/N): " choice2
     if [[ "$choice2" == "y" || "$choice2" == "Y" ]]
