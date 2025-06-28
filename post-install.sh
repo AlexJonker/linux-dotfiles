@@ -20,8 +20,6 @@ then
     cd pywal
     ln -s ~/.cache/wal/pywal.kvconfig
     ln -s ~/.cache/wal/pywal.svg
-    ln -s ~/.cache/wal/pywal.kvconfig
-    ln -s ~/.cache/wal/pywal.svg
 
     bash ~/Scripts/pywal.sh    # run again but with the gtk theming fixes
 
