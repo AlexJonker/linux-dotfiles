@@ -14,6 +14,10 @@ then
     cp -a ./.config/. ~/.config/
     mkdir -p ~/Scripts
     cp -a ./scripts/. ~/Scripts/
+
+    rm -fr ~/.local/share/themes/adw-gtk3-dark
+    rm -fr ~/.local/share/themes/adw-gtk3
+    cp -a ./themes/. ~/.local/share/themes
     
     # Reboot prompt
     read -p "Done! Do you want to reboot? (y/N): " choice2
