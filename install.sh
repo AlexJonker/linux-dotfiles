@@ -54,6 +54,9 @@ then
     # flatpak theming fixes
     flatpak -u override --filesystem=/usr/share/icons/:ro
     flatpak -u override --filesystem=xdg-config/gtk-3.0:ro
+    sudo flatpak override --filesystem=xdg-data/themes
+    sudo flatpak mask org.gtk.Gtk3theme.adw-gtk3
+    sudo flatpak mask org.gtk.Gtk3theme.adw-gtk3-dark
     
     # Change shell to fish
     chsh -s $(which fish)
@@ -61,7 +64,7 @@ then
     # Enable sddm (simple login manager)
     sudo systemctl enable sddm
 
-    # Adjust Spotify permissions (ensure it's necessary for your setup)
+    # Adjust Spotify permissions
     sudo chmod a+wr /opt/spotify
     sudo chmod a+wr /opt/spotify/Apps -R
 
