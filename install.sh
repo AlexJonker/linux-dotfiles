@@ -45,7 +45,7 @@ then
     # Install system themes
     sudo cp -a ./themes/. /usr/share/themes/
     gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark
-    settings set org.gnome.desktop.interface icon-theme Tela
+    gsettings set org.gnome.desktop.interface icon-theme Tela
     gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice
 
     # kitty as default terminal
