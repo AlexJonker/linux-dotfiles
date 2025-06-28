@@ -72,15 +72,11 @@
                 },
                 {
                     "label": "󰌾",
-                    "command": "~/.config/hypr/scripts/LockScreen.sh"
+                    "command": "hyprlock"
                 },
                 {
                     "label": "󰍃",
                     "command": "hyprctl dispatch exit"
-                },
-                {
-                    "label": "󰀝",
-                    "command": "~/.config/hypr/scripts/AirplaneMode.sh"
                 },
                 {
                     "label": "󰕾",
