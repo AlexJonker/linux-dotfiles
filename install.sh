@@ -48,6 +48,9 @@ then
     settings set org.gnome.desktop.interface icon-theme Tela
     gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice
 
+    # kitty as default terminal
+    gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
+
     # flatpak theming fixes
     flatpak -u override --filesystem=/usr/share/icons/:ro
     flatpak -u override --filesystem=xdg-config/gtk-3.0:ro
