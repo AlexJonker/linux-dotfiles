@@ -43,7 +43,7 @@ then
     cp ./avatar.png ~/Pictures/
 
     # Install system themes
-    sudo cp -a ./themes/. /usr/share/themes/
+    sudo cp -a ./themes/. ~/.local/share/themes
     gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark
     gsettings set org.gnome.desktop.interface icon-theme Tela
     gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice
