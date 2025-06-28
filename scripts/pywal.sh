@@ -45,7 +45,7 @@ declare -A color_map=(
 )
 
 for key in "${!color_map[@]}"; do
-    sed -i "s/^$key=\"#[0-9a-fA-F]\{6\}\"/$key=\"${color_map[$key]}\"/" "$SDDM_THEME"
+    sed -i "/^$key=/s|=.*|=\"${color_map[$key]}\"|" "$SDDM_THEME"
 done
 
 
