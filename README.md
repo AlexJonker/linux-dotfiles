@@ -8,7 +8,7 @@
 - **Pywal with waypaper**
 
 ## TODO
-- **[this](https://github.com/eylles/pywal16-libadwaita/issues/10) in the install script**
+- **[this](https://github.com/eylles/pywal16-libadwaita/issues/10) in the install script** (Works but not for flatpak)
 
 ---
 
