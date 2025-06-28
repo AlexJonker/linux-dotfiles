@@ -9,6 +9,19 @@ then
     swww img ~/Pictures/Wallpapers/dragon-girl.jpg
     bash ~/Scripts/pywal.sh
 
+
+    mkdir -p ~/.config/presets/user
+    cd ~/.config/presets/user
+    ln -s ~/.cache/wal/pywal.json
+
+    cd ~/.config/Kvantum
+    mkdir -p pywal
+    cd pywal
+    ln -s ~/.cache/wal/pywal.kvconfig
+    ln -s ~/.cache/wal/pywal.svg
+    ln -s ~/.cache/wal/pywal.kvconfig
+    ln -s ~/.cache/wal/pywal.svg
+
     read -p "Done! do you want to reboot? (y/N): " choice2
     if [[ "$choice2" == "y" || "$choice2" == "Y" ]]
     then

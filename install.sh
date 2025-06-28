@@ -87,17 +87,7 @@ then
     # gtk and qt theme changing
     sudo flatpak override --filesystem=xdg-config/gtk-3.0
     sudo flatpak override --filesystem=xdg-config/gtk-4.0
-    mkdir ~/.config/presets/user
-    cd ~/.config/presets/user
-    ln -s ~/.cache/wal/pywal.json
 
-    cd ~/.config/Kvantum
-    mkdir pywal
-    cd pywal
-    ln -s ~/.cache/wal/pywal.kvconfig
-    ln -s ~/.cache/wal/pywal.svg
-    ln -s ~/.cache/wal/pywal.kvconfig
-    ln -s ~/.cache/wal/pywal.svg
 
     echo "Please reboot and run the post-install.sh script."
 
