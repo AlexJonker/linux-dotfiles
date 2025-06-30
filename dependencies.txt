@@ -57,3 +57,5 @@ xdg-desktop-portal-hyprland
 rofi-emoji
 wtype
 cava
+qt5-wayland
+qt6-wayland
