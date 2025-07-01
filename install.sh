@@ -54,6 +54,7 @@ then
     # flatpak theming fixes
     flatpak -u override --filesystem=/usr/share/icons/:ro
     flatpak -u override --filesystem=xdg-config/gtk-3.0:ro
+    flatpak -u override --filesystem=xdg-config/gtk-4.0:ro
     sudo flatpak override --filesystem=xdg-data/themes
     sudo flatpak mask org.gtk.Gtk3theme.adw-gtk3
     sudo flatpak mask org.gtk.Gtk3theme.adw-gtk3-dark
