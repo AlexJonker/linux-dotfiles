@@ -5,7 +5,6 @@ if [[ "$choice" == "y" || "$choice" == "Y" ]]
 then
     echo "Continuing..."
 
-    gsettings set org.gnome.desktop.wm.preferences button-layout "appmenu:close"
     swww img ~/Pictures/Wallpapers/dragon-girl.jpg
     bash ~/Scripts/pywal.sh
 

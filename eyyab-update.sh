@@ -7,6 +7,10 @@ then
 
     cp -a ~/.config ~/.config.backup.$(date +%s)
 
+    rm -fr ~/.config/waybar
+    rm -fr ~/.config/hypr
+    rm -fr ~/.config/swaync
+
     # Install dependencies from dependencies.txt
     yay -S --needed --noconfirm --config ./pacman.conf - < ./dependencies.txt
 
@@ -29,6 +33,7 @@ then
     gsettings set org.gnome.desktop.interface icon-theme Tela
     gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+    gsettings set org.gnome.desktop.wm.preferences button-layout "appmenu:close"
 
     # kitty as default terminal
     gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty
@@ -44,6 +49,21 @@ then
     sudo flatpak mask org.gtk.Gtk3theme.adw-gtk3
     sudo flatpak mask org.gtk.Gtk3theme.adw-gtk3-dark
 
+
+    bash ~/Scripts/pywal.sh
+
+    mkdir -p ~/.config/presets/user
+    cd ~/.config/presets/user
+    ln -s ~/.cache/wal/pywal.json
+
+    mkdir -p ~/.config/Kvantum
+    cd ~/.config/Kvantum
+    mkdir -p pywal
+    cd pywal
+    ln -s ~/.cache/wal/pywal.kvconfig
+    ln -s ~/.cache/wal/pywal.svg
+
+    bash ~/Scripts/pywal.sh    # run again but with the gtk theming fixes
 
 
     # Reboot prompt
