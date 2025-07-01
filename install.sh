@@ -87,9 +87,6 @@ then
 
     sudo sed -i 's|^BgSource=.*|BgSource="backgrounds/current_wallpaper"|' /usr/share/sddm/themes/corners/theme.conf
 
-    # gtk and qt theme changing
-    sudo flatpak override --filesystem=xdg-config/gtk-3.0
-    sudo flatpak override --filesystem=xdg-config/gtk-4.0
 
 
     echo "Please reboot and run the post-install.sh script."
