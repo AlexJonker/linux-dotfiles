@@ -42,7 +42,6 @@ bluez-utils
 neovim
 kvantum
 gradience
-lazygit
 grimblast
 power-profiles-daemon
 nerd-fonts
