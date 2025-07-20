@@ -40,7 +40,7 @@ check hyprpicker || {
   exit
 }
 killall -q hyprpicker
-color=$(hyprpicker)
+color=$(hyprpicker 2>&1 | sed '/^\[ERR\] renderSurface: PBUFFER null$/d')
 
 check wl-copy && {
   echo "$color" | sed -z 's/\n//g' | wl-copy
