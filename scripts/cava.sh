@@ -40,8 +40,14 @@ stdbuf -oL cava -p "$config_file" | while read -r line; do
         title=$(playerctl metadata --format '{{title}}' 2>/dev/null)
     fi
 
-    info="${artist} - ${title} - "
-    base="$info"
+    # build display text
+    if [ -n "$artist" ] && [ -n "$title" ]; then
+        info="${title} - ${artist}"
+        base="$info - $info"
+    else
+        info="${artist}${title}"
+        base="$info"
+    fi
 
     if [ ${#info} -gt $maxlen ]; then
         if (( counter % scroll_delay == 0 )); then
@@ -70,4 +76,3 @@ stdbuf -oL cava -p "$config_file" | while read -r line; do
         echo "$display"
     fi
 done
-
