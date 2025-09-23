@@ -41,22 +41,24 @@ stdbuf -oL cava -p "$config_file" | while read -r line; do
     fi
 
     # build display text
-    if [ -n "$artist" ] && [ -n "$title" ]; then
+    if [ -n "$title" ] && [ -n "$artist" ]; then
         info="${title} - ${artist}"
-        base="$info - $info"
+    elif [ -n "$title" ]; then
+        info="$title"
+    elif [ -n "$artist" ]; then
+        info="$artist"
     else
-        info="${artist}${title}"
-        base="$info"
+        info=""
     fi
 
     if [ ${#info} -gt $maxlen ]; then
         if (( counter % scroll_delay == 0 )); then
             scroll_pos=$((scroll_pos + scroll_speed))
         fi
-        start=$(( scroll_pos % ${#base} ))
-        display="${base:start}"
+        start=$(( scroll_pos % ${#info} ))
+        display="${info:start}"
         if [ ${#display} -lt $maxlen ]; then
-            display="$display${base:0:$((maxlen - ${#display}))}"
+            display="$display${info:0:$((maxlen - ${#display}))}"
         else
             display="${display:0:$maxlen}"
         fi
