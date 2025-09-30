@@ -1,4 +1,5 @@
-rofi-wayland
+wofi
+wofi-emoji
 hyprland
 hypridle
 hyprlock
@@ -53,7 +54,6 @@ kwallet
 xdg-desktop-portal
 xdg-desktop-portal-gtk
 xdg-desktop-portal-hyprland
-rofi-emoji
 wtype
 cava
 qt5-wayland
