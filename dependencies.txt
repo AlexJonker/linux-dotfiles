@@ -1,5 +1,3 @@
-wofi
-wofi-emoji
 hyprland
 hypridle
 hyprlock
@@ -58,3 +56,5 @@ wtype
 cava
 qt5-wayland
 qt6-wayland
+fuzzel
+bemoji
