@@ -16,7 +16,8 @@ wal -i "$wallpaper" &&
 killall swaync && swaync &
 gradience-cli apply -n pywal --gtk both
 
-
+# set fuzzel theme
+./fuzzel.sh
 
 
 SDDM_THEME="/usr/share/sddm/themes/corners/theme.conf"
