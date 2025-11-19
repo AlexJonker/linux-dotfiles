@@ -1,5 +1,3 @@
-cat ~/.cache/wal/sequences &
-
 set -g fish_greeting
 
 if status is-interactive
