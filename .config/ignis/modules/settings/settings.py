@@ -40,6 +40,7 @@ class Settings(widgets.RegularWindow):
             visible=False,
             child=widgets.Box(child=[navigation_sidebar, content]),
             namespace="ignis_SETTINGS",
+            css_classes=["settings-window"],
         )
 
         self.connect("notify::visible", self.__on_open)

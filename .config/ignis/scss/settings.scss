@@ -1,3 +1,9 @@
+.settings-window {
+    @include window;
+    padding: 0;
+    margin: 0;
+}
+
 .settings-sidebar {
     background-color: $surfaceContainer;
     min-width: 300px;
