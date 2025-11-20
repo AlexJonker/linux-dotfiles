@@ -69,3 +69,24 @@
     font-size: 2.3rem;
     margin-left: 1.5rem;
 }
+
+// Fix toggle switches visibility in dark mode
+.settings-row switch {
+    background-color: $outlineVariant;
+    border-radius: 1rem;
+    
+    slider {
+        background-color: $onSurfaceVariant;
+        border-radius: 50%;
+        min-width: 1.5rem;
+        min-height: 1.5rem;
+    }
+    
+    &:checked {
+        background-color: $primary;
+        
+        slider {
+            background-color: $onPrimary;
+        }
+    }
+}
