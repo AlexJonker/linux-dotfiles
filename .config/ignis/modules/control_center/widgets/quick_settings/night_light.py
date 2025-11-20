@@ -6,10 +6,14 @@ from ignis.utils import Utils
 def toggle_night_light(enabled: bool) -> None:
     """Toggle night light on/off"""
     user_options.night_light.set_enabled(enabled)
-    Utils.exec_sh("pkill hyprsunset")
+
     if enabled:
         temp = user_options.night_light.temperature
-        Utils.exec_sh(f"nohup hyprsunset -t {temp} >/dev/null 2>&1 &")
+        Utils.exec_sh(f"pkill hyprsunset && sleep .1 ; nohup hyprsunset -t {temp} >/dev/null 2>&1 &") # The sleep isn't great but it works. This is the cause for the flicker when changing temprature but without it will bug out even worse.
+        print(f"Hyprsunset started with temperature {temp}")
+    else:
+        Utils.exec_sh("pkill hyprsunset")
+        print("Night light disabled")
 
 
 

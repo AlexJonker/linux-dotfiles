@@ -16,6 +16,21 @@ material = MaterialService.get_default()
 class AppearanceEntry(SettingsEntry):
     def __init__(self):
         self._temp_update_timer = None
+        
+        def on_temp_change(slider):
+            # Cancel any existing timer
+            if self._temp_update_timer is not None and self._temp_update_timer > 0:
+                GLib.source_remove(self._temp_update_timer)
+                self._temp_update_timer = None
+
+            # Set a new timer to update after 500ms of inactivity
+            def timeout_callback():
+                update_temperature(slider.value)
+                self._temp_update_timer = None
+                return False  # Remove the timer source
+            
+            self._temp_update_timer = GLib.timeout_add(500, timeout_callback)
+        
         page = SettingsPage(
             name="Appearance",
             groups=[
@@ -51,7 +66,7 @@ class AppearanceEntry(SettingsEntry):
                             label="Temperature",
                             sublabel="Color temperature (lower = warmer)",
                             value=user_options.night_light.bind("temperature"),
-                            on_change=lambda x: update_temperature(x.value),
+                            on_change=on_temp_change,
                             min=1000,
                             max=6500,
                             step=100,
