@@ -15,6 +15,44 @@ tooltip {
     border-radius: 1rem;
 }
 
+popover,
+popover > contents {
+    background-color: $surface;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
+menu,
+menu > arrow {
+    background-color: $surface;
+    border-radius: 1rem;
+}
+
+menuitem {
+    all: unset;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    
+    &:hover {
+        background-color: $surfaceContainerHigh;
+    }
+}
+
+combobox button,
+combobox > box > button.combo {
+    background-color: $surfaceContainerHigh;
+}
+
+combobox popover,
+dropdown popover {
+    background-color: $surface;
+}
+
+dropdown > button,
+dropdown > button > box {
+    background-color: $surfaceContainerHigh;
+}
+
 .toggle-box {
     padding: 0.75rem 1rem;
     border-radius: 1rem;
