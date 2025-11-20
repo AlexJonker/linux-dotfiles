@@ -37,9 +37,14 @@ class UserOptions(OptionsManager):
         dark_mode: bool = True
         colors: dict[str, str] = {}
 
+    class NightLight(OptionsGroup):
+        enabled: bool = False
+        temperature: int = 4500
+
     user = User()
     settings = Settings()
     material = Material()
+    night_light = NightLight()
 
 
 user_options = UserOptions()

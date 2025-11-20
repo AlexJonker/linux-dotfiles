@@ -3,6 +3,7 @@ from .wifi import wifi_control
 from .record import RecordButton
 from .dnd import DNDButton
 from .dark_mode import DarkModeButton
+from .night_light import NightLightButton
 from .ethernet import ethernet_control
 from .vpn import vpn_control
 from .bluetooth import bluetooth_control
@@ -33,6 +34,7 @@ class QuickSettings(widgets.Box):
             *bluetooth_control(),
             DNDButton(),
             DarkModeButton(),
+            NightLightButton(),
             RecordButton(),
         )
 
