@@ -1,7 +1,6 @@
 from ...qs_button import QSButton
 from user_options import user_options
-from user_options import user_options
-from ignis.utils import Utils
+from ignis import utils
 
 def toggle_night_light(enabled: bool) -> None:
     """Toggle night light on/off"""
@@ -9,10 +8,10 @@ def toggle_night_light(enabled: bool) -> None:
 
     if enabled:
         temp = user_options.night_light.temperature
-        Utils.exec_sh(f"pkill hyprsunset && sleep .1 ; nohup hyprsunset -t {temp} >/dev/null 2>&1 &") # The sleep isn't great but it works. This is the cause for the flicker when changing temprature but without it will bug out even worse.
+        utils.exec_sh(f"pkill hyprsunset && sleep .1 ; nohup hyprsunset -t {temp} >/dev/null 2>&1 &") # The sleep isn't great but it works. This is the cause for the flicker when changing temprature but without it will bug out even worse.
         print(f"Hyprsunset started with temperature {temp}")
     else:
-        Utils.exec_sh("pkill hyprsunset")
+        utils.exec_sh("pkill hyprsunset")
         print("Night light disabled")
 
 
