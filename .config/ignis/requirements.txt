@@ -1,0 +1,5 @@
+git+https://github.com/ignis-sh/ignis.git
+torch
+numpy
+Pillow
+materialyoucolor
