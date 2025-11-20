@@ -16,11 +16,11 @@ class SliderRow(SettingsRow):
     ):
         super().__init__(**kwargs)
         self._scale = widgets.Scale(
-            value=value,
-            on_change=on_change,
             min=min,
             max=max,
             step=step,
+            value=value,
+            on_change=on_change,
             hexpand=True,
             css_classes=["material-slider"],
         )

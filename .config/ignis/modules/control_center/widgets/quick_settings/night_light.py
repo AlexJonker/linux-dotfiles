@@ -13,7 +13,7 @@ def toggle_night_light(enabled: bool) -> None:
 
 
 
-def update_temperature(self, value: int) -> None:
+def update_temperature(value: int) -> None:
     user_options.night_light.set_temperature(int(value))
     if user_options.night_light.enabled:
         Utils.exec_sh("pkill hyprsunset")
