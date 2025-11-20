@@ -5,12 +5,6 @@ from ignis import DATA_DIR, CACHE_DIR  # type: ignore
 USER_OPTIONS_FILE = f"{DATA_DIR}/user_options.json"
 
 
-# FIXME: remove someday
-def _migrate_old_options_file() -> None:
-    with open(USER_OPTIONS_FILE, "w") as f:
-        f.write(data)
-
-
 class UserOptions(OptionsManager):
     def __init__(self):
         try:
