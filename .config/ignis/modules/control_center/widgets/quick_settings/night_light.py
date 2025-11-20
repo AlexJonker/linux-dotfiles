@@ -15,9 +15,7 @@ def toggle_night_light(enabled: bool) -> None:
 
 def update_temperature(value: int) -> None:
     user_options.night_light.set_temperature(int(value))
-    if user_options.night_light.enabled:
-        Utils.exec_sh("pkill hyprsunset")
-        Utils.exec_sh(f"nohup hyprsunset -t {int(value)} >/dev/null 2>&1 &")
+    toggle_night_light(user_options.night_light.enabled)
 
 
 
@@ -32,3 +30,6 @@ class NightLightButton(QSButton):
             on_deactivate=lambda x: toggle_night_light(False),
             active=user_options.night_light.bind("enabled"),
         )
+        
+        # Start hyprsusnet if enabled in user_options.json at program startup
+        toggle_night_light(user_options.night_light.enabled)
