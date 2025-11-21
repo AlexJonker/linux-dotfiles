@@ -29,11 +29,11 @@ class ControlCenter(widgets.RevealerWindow):
                             vertical=True,
                             css_classes=["control-center-widget"],
                             child=[
+                                User(),
                                 QuickSettings(),
+                                Brightness(),
                                 VolumeSlider("speaker"),
                                 VolumeSlider("microphone"),
-                                Brightness(),
-                                User(),
                                 Media(),
                             ],
                         ),
