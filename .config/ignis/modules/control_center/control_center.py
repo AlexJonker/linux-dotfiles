@@ -15,7 +15,43 @@ window_manager = WindowManager.get_default()
 
 class ControlCenter(widgets.RevealerWindow):
     def __init__(self):
-        # control-center-style content box
+        self._tab_index = 0
+
+        # Define tab contents as a list
+        tab_contents = [
+            widgets.Box(vertical=True, child=[User(), QuickSettings(), Brightness()]),
+            widgets.Box(vertical=True, child=[VolumeSlider("speaker"), VolumeSlider("microphone"), Media()]),
+            widgets.Box(vertical=True, child=[NotificationCenter()]),
+        ]
+
+        self.tab_content = widgets.Box(vertical=True, child=[tab_contents[0]])
+
+        def set_tab(idx):
+            self._tab_index = idx
+            self.tab_content.child = [tab_contents[idx]]
+            activate_tab_btn(idx)
+
+        # Create tab buttons in a loop
+        tab_labels = ["General", "Audio", "Notifications"]
+        tab_buttons = []
+        for i, label in enumerate(tab_labels):
+            btn = widgets.Button(
+                child=widgets.Label(label=label),
+                css_classes=["control-center-tab-btn"] + (["active"] if i == 0 else []),
+                on_click=lambda x, idx=i: set_tab(idx),
+            )
+            tab_buttons.append(btn)
+
+        tab_bar = widgets.Box(css_classes=["control-center-tabs"], child=tab_buttons)
+
+        def activate_tab_btn(idx):
+            for i, btn in enumerate(tab_buttons):
+                if i == idx:
+                    btn.add_css_class("active")
+                else:
+                    btn.remove_css_class("active")
+
+        # Main content
         content = widgets.Box(
             vertical=True,
             spacing=8,
@@ -24,94 +60,68 @@ class ControlCenter(widgets.RevealerWindow):
                 widgets.Box(
                     vertical=True,
                     css_classes=["control-center"],
-                    child=[
-                        widgets.Box(
-                            vertical=True,
-                            css_classes=["control-center-widget"],
-                            child=[
-                                User(),
-                                QuickSettings(),
-                                Brightness(),
-                                VolumeSlider("speaker"),
-                                VolumeSlider("microphone"),
-                                Media(),
-                            ],
-                        ),
-                        NotificationCenter(),
-                    ],
+                    child=[tab_bar, self.tab_content],
                 ),
             ],
         )
 
-        # Create revealer with content - corners outside control-center-box
+        # Revealer with corners
         revealer = widgets.Revealer(
-            transition_type="slide_left",
+            transition_type="slide_down",
             child=widgets.Box(
                 vertical=True,
                 child=[
                     widgets.Box(
                         css_classes=["control-center-corner-up"],
-                        child=[
-                            Corner(
-                                orientation="bottom-right",
-                                width_request=40,
-                                height_request=40,
-                            )
-                        ],
+                        child=[Corner(orientation="bottom-right", width_request=40, height_request=40)],
                     ),
                     content,
                     widgets.Box(
                         css_classes=["control-center-corner-down"],
-                        child=[
-                            Corner(
-                                orientation="top-right",
-                                width_request=40,
-                                height_request=40,
-                            )
-                        ],
+                        child=[Corner(orientation="top-right", width_request=40, height_request=40)],
                     ),
                 ],
             ),
             transition_duration=300,
             reveal_child=False,
         )
-        # control-center-style dismiss buttons
-        start_dismiss_button = widgets.Button(
+
+        # Dismiss buttons
+        dismiss_button = widgets.Button(
             vexpand=True,
             hexpand=True,
             css_classes=["control-center-dismiss"],
             on_click=lambda x: setattr(self, "visible", False),
         )
-        end_dismiss_button = widgets.Button(
-            vexpand=True,
-            hexpand=True,
-            css_classes=["control-center-dismiss"],
-            on_click=lambda x: setattr(self, "visible", False),
-        )
+
         super().__init__(
             visible=False,
             popup=True,
             kb_mode="none",
             layer="overlay",
             css_classes=["control-window"],
-            anchor=["top", "bottom", "right"],
+            anchor=["top"],
             namespace="ignis_CONTROL_CENTER",
             child=widgets.CenterBox(
                 hexpand=True,
-                halign="fill",
+                halign="center",
                 vexpand=True,
                 vertical=True,
-                start_widget=start_dismiss_button,
+                start_widget=dismiss_button,
                 center_widget=widgets.Box(
                     vertical=True,
-                    valign="center",
-                    halign="end",
+                    valign="start",
+                    halign="center",
+                    style="min-width: 40rem; min-height: 18rem;",
                     child=[revealer],
                 ),
-                end_widget=end_dismiss_button,
+                end_widget=dismiss_button,
             ),
             revealer=revealer,
         )
+
+        # Connect visibility change signal
+        self.connect("notify::visible", self.__on_visibility_change, revealer)
 
     def __on_visibility_change(self, window, param, revealer):
         if self.visible:
