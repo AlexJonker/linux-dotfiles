@@ -110,8 +110,8 @@ class SearchWebButton(widgets.Button):
             label = f"Visit {query}"
             self._url = query
         else:
-            label = "Search in Google"
-            self._url = f"https://www.google.com/search?q={query.replace(' ', '+')}"
+            label = "Run in terminal"
+            self._url = ""
 
         super().__init__(
             on_click=lambda x: self.launch(),
@@ -128,7 +128,10 @@ class SearchWebButton(widgets.Button):
         )
 
     def launch(self) -> None:
-        asyncio.create_task(utils.exec_sh_async(f"xdg-open {self._url}"))
+        if self._url:
+            asyncio.create_task(utils.exec_sh_async(f"xdg-open {self._url}"))
+        else:
+            asyncio.create_task(utils.exec_sh_async(self._query))
         window_manager.close_window("ignis_LAUNCHER")
 
 
@@ -162,7 +165,12 @@ class Launcher(widgets.Window):
                         self._entry,
                     ],
                 ),
-                self._app_list,
+                widgets.Scroll(
+                    vexpand=True,
+                    min_content_height=400,
+                    max_content_height=600,
+                    child=self._app_list,
+                ),
             ],
         )
 
@@ -193,6 +201,7 @@ class Launcher(widgets.Window):
 
         self._entry.text = ""
         self._entry.grab_focus()
+        self.__search()
 
     def __on_accept(self, *args) -> None:
         if len(self._app_list.child) > 0:
@@ -203,7 +212,8 @@ class Launcher(widgets.Window):
 
         if query == "":
             self._entry.grab_focus()
-            self._app_list.visible = False
+            self._app_list.visible = True
+            self._app_list.child = [LauncherAppItem(i) for i in applications.apps]
             return
 
         apps = applications.search(applications.apps, query)
