@@ -26,10 +26,15 @@ class UserOptions(OptionsManager):
         enabled: bool = False
         temperature: int = 4500
 
+    class Clock(OptionsGroup):
+        margin_left: int = 50
+        margin_top: int = 50
+
     user = User()
     settings = Settings()
     material = Material()
     night_light = NightLight()
+    clock = Clock()
 
 
 user_options = UserOptions()

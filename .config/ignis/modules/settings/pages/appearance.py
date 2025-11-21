@@ -71,6 +71,58 @@ class AppearanceEntry(SettingsEntry):
                             max=6500,
                             step=100,
                         ),
+                        SliderRow(
+                            label="Clock Horizontal Position",
+                            sublabel="Left (0%) to Right (100%)",
+                            value=user_options.clock.bind("margin_left"),
+                            on_change=lambda x: user_options.clock.set_margin_left(int(x.value)),
+                            min=0,
+                            max=100,
+                            step=1,
+                        ),
+                        SliderRow(
+                            label="Clock Vertical Position",
+                            sublabel="Top (0%) to Bottom (100%)",
+                            value=user_options.clock.bind("margin_top"),
+                            on_change=lambda x: user_options.clock.set_margin_top(int(x.value)),
+                            min=0,
+                            max=100,
+                            step=1,
+                        ),
+                        widgets.ListBoxRow(
+                            child=widgets.Box(
+                                spacing=10,
+                                homogeneous=True,
+                                child=[
+                                    widgets.Button(
+                                        child=widgets.Label(label="Top Left"),
+                                        on_click=lambda x: (
+                                            user_options.clock.set_margin_left(0),
+                                            user_options.clock.set_margin_top(0)
+                                        ),
+                                        hexpand=True,
+                                    ),
+                                    widgets.Button(
+                                        child=widgets.Label(label="Center"),
+                                        on_click=lambda x: (
+                                            user_options.clock.set_margin_left(50),
+                                            user_options.clock.set_margin_top(50)
+                                        ),
+                                        hexpand=True,
+                                    ),
+                                    widgets.Button(
+                                        child=widgets.Label(label="Bottom Right"),
+                                        on_click=lambda x: (
+                                            user_options.clock.set_margin_left(100),
+                                            user_options.clock.set_margin_top(100)
+                                        ),
+                                        hexpand=True,
+                                    ),
+                                ]
+                            ),
+                            selectable=False,
+                            activatable=False,
+                        ),
                         FileRow(
                             label="Wallpaper path",
                             button_label=os.path.basename(
