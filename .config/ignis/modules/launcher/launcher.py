@@ -135,7 +135,7 @@ class SearchWebButton(widgets.Button):
         window_manager.close_window("ignis_LAUNCHER")
 
 
-class Launcher(widgets.Window):
+class Launcher(widgets.RevealerWindow):
     def __init__(self):
         self._app_list = widgets.Box(
             vertical=True, visible=False, style="margin-top: 1rem;"
@@ -174,7 +174,15 @@ class Launcher(widgets.Window):
             ],
         )
 
+        revealer = widgets.Revealer(
+            transition_type="slide_down",
+            child=main_box,
+            transition_duration=300,
+            reveal_child=False,
+        )
+
         super().__init__(
+            revealer=revealer,
             namespace="ignis_LAUNCHER",
             visible=False,
             popup=True,
@@ -191,7 +199,7 @@ class Launcher(widgets.Window):
                     on_click=lambda x: window_manager.close_window("ignis_LAUNCHER"),
                     style="background-color: rgba(0, 0, 0, 0.3);",
                 ),
-                overlays=[main_box],
+                overlays=[revealer],
             ),
         )
 

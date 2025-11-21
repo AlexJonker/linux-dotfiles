@@ -2,8 +2,13 @@
     * {
         background: unset;
     }
-
     background: unset;
+
+    .osd-corner-up,
+    .osd-corner-down {
+        color: $surface;
+        margin-left: 28px;
+    }
 }
 
 .osd-dismiss {
@@ -18,19 +23,6 @@
     padding: 10px;
 }
 
-.osd-corner-up,
-.osd-corner-down {
-    color: $surface;
-}
-
-.osd-corner-up {
-    margin-left: 28px;
-}
-
-.osd-corner-down {
-    margin-left: 28px;
-}
-
 .osd-icon-box {
     min-height: 3.5rem;
     min-width: 3rem;
@@ -43,15 +35,11 @@
 }
 
 .osd-scale {
+    all: unset;
     min-width: 8px;
     min-height: 200px;
     padding: 4px;
     border-radius: 25px;
-}
-
-.osd-scale {
-    all: unset;
-
     * {
         all: unset;
     }

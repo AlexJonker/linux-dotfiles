@@ -1,6 +1,10 @@
 .notification-popup {
     @include window;
     min-width: 25rem;
+    background: $surface;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 10px;
 
     & .notification-close {
         @include hover($surface);
@@ -9,4 +13,10 @@
     & .notification-action {
         @include hover($surfaceContainer);
     }
+}
+
+.osd-corner-up,
+.osd-corner-down {
+    color:$surface;
+    margin-left: 27rem;
 }

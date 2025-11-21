@@ -7,7 +7,7 @@ WIDGET_WIDTH = 260
 WIDGET_HEIGHT = 150
 
 
-class Clock(widgets.Window):
+class Clock(widgets.RevealerWindow):
     def __init__(self):
         time_label = widgets.Label(
             label=utils.Poll(
@@ -39,11 +39,19 @@ class Clock(widgets.Window):
             margin_top=user_options.clock.bind("margin_top", transform=percent_to_margin_y),
         )
 
+        revealer = widgets.Revealer(
+            transition_type="slide_down",
+            child=box,
+            transition_duration=300,
+            reveal_child=False,
+        )
+
         super().__init__(
+            revealer=revealer,
             namespace="ignis_CLOCK",
             layer="background",
             anchor=["top", "left"],
             exclusivity="ignore",
             css_classes=["clock-window"],
-            child=box,
+            child=revealer,
         )

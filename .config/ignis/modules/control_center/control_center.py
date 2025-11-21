@@ -8,58 +8,107 @@ from .widgets import (
     Media,
     NotificationCenter,
 )
+from ignis.widgets import Corner
 from .menu import opened_menu
 
 window_manager = WindowManager.get_default()
 
 class ControlCenter(widgets.RevealerWindow):
     def __init__(self):
+        # OSD-style content box
+        content = widgets.Box(
+            vertical=True,
+            spacing=8,
+            css_classes=["osd-box"],
+            child=[
+                widgets.Box(
+                    vertical=True,
+                    css_classes=["control-center"],
+                    child=[
+                        widgets.Box(
+                            vertical=True,
+                            css_classes=["control-center-widget"],
+                            child=[
+                                QuickSettings(),
+                                VolumeSlider("speaker"),
+                                VolumeSlider("microphone"),
+                                Brightness(),
+                                User(),
+                                Media(),
+                            ],
+                        ),
+                        NotificationCenter(),
+                    ],
+                ),
+            ],
+        )
+
+        # Create revealer with content - corners outside osd-box
         revealer = widgets.Revealer(
             transition_type="slide_left",
             child=widgets.Box(
                 vertical=True,
-                css_classes=["control-center"],
                 child=[
                     widgets.Box(
-                        vertical=True,
-                        css_classes=["control-center-widget"],
+                        css_classes=["osd-corner-up"],
                         child=[
-                            QuickSettings(),
-                            VolumeSlider("speaker"),
-                            VolumeSlider("microphone"),
-                            Brightness(),
-                            User(),
-                            Media(),
+                            Corner(
+                                orientation="bottom-right",
+                                width_request=40,
+                                height_request=40,
+                            )
                         ],
                     ),
-                    NotificationCenter(),
+                    content,
+                    widgets.Box(
+                        css_classes=["osd-corner-down"],
+                        child=[
+                            Corner(
+                                orientation="top-right",
+                                width_request=40,
+                                height_request=40,
+                            )
+                        ],
+                    ),
                 ],
             ),
             transition_duration=300,
             reveal_child=False,
         )
-
+        # OSD-style dismiss buttons
+        start_dismiss_button = widgets.Button(
+            vexpand=True,
+            hexpand=True,
+            css_classes=["osd-dismiss"],
+            on_click=lambda x: setattr(self, "visible", False),
+        )
+        end_dismiss_button = widgets.Button(
+            vexpand=True,
+            hexpand=True,
+            css_classes=["osd-dismiss"],
+            on_click=lambda x: setattr(self, "visible", False),
+        )
         super().__init__(
             visible=False,
             popup=True,
-            kb_mode="on_demand",
-            layer="top",
-            css_classes=["unset"],
-            anchor=["top", "right", "bottom", "left"],
+            kb_mode="none",
+            layer="overlay",
+            css_classes=["control-window"],
+            anchor=["top", "bottom", "right"],
             namespace="ignis_CONTROL_CENTER",
-            child=widgets.Box(
-                child=[
-                    widgets.Button(
-                        vexpand=True,
-                        hexpand=True,
-                        css_classes=["unset"],
-                        on_click=lambda x: window_manager.close_window("ignis_CONTROL_CENTER"),
-                    ),
-                    revealer,
-                ],
-            ),
-            setup=lambda self: self.connect(
-                "notify::visible", lambda x, y: self.__on_visibility_change(x, y, revealer)
+            child=widgets.CenterBox(
+                hexpand=True,
+                halign="fill",
+                vexpand=True,
+                vertical=True,
+                start_widget=start_dismiss_button,
+                center_widget=widgets.Box(
+                    vertical=True,
+                    valign="center",
+                    halign="end",
+                    child=[revealer],
+                ),
+                end_widget=end_dismiss_button,
             ),
             revealer=revealer,
         )

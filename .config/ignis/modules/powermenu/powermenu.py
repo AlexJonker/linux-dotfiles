@@ -63,7 +63,7 @@ class HyprlandExitButton(PowermenuButton):
         )
 
 
-class Powermenu(widgets.Window):
+class Powermenu(widgets.RevealerWindow):
     def __init__(self):
         main_box = widgets.Box(
             vertical=True,
@@ -85,7 +85,14 @@ class Powermenu(widgets.Window):
                 ),
             ],
         )
+        revealer = widgets.Revealer(
+            transition_type="slide_down",
+            child=main_box,
+            transition_duration=300,
+            reveal_child=False,
+        )
         super().__init__(
+            revealer=revealer,
             popup=True,
             kb_mode="on_demand",
             namespace="ignis_POWERMENU",
@@ -100,7 +107,7 @@ class Powermenu(widgets.Window):
                     css_classes=["unset", "powermenu-overlay"],
                     on_click=lambda x: window_manager.close_window("ignis_POWERMENU"),
                 ),
-                overlays=[main_box],
+                overlays=[revealer],
             ),
             css_classes=["unset"],
         )
