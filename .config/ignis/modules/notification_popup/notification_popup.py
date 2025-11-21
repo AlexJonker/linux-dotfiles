@@ -58,22 +58,22 @@ class PopupBox(widgets.Box):
 class NotificationPopup(widgets.RevealerWindow):
     def __init__(self, monitor: int):
         self.popup_box = PopupBox(window=self, monitor=monitor)
-        # OSD-style content box
+        # notification-popup-style content box
         content = widgets.Box(
             vertical=True,
             spacing=8,
-            css_classes=["osd-box"],
+            css_classes=["notification-popup-box"],
             child=[self.popup_box],
         )
 
-        # Create revealer with content - corners outside osd-box
+        # Create revealer with content - corners outside notification-popup-box
         self.content_revealer = widgets.Revealer(
             transition_type="slide_left",
             child=widgets.Box(
                 vertical=True,
                 child=[
                     widgets.Box(
-                        css_classes=["osd-corner-up"],
+                        css_classes=["notification-popup-corner-up"],
                         child=[
                             Corner(
                                 orientation="bottom-right",
@@ -84,7 +84,7 @@ class NotificationPopup(widgets.RevealerWindow):
                     ),
                     content,
                     widgets.Box(
-                        css_classes=["osd-corner-down"],
+                        css_classes=["notification-popup-corner-down"],
                         child=[
                             Corner(
                                 orientation="top-right",
@@ -98,17 +98,17 @@ class NotificationPopup(widgets.RevealerWindow):
             transition_duration=300,
             reveal_child=False,
         )
-        # OSD-style dismiss buttons
+        # notification-popup-style dismiss buttons
         start_dismiss_button = widgets.Button(
             vexpand=True,
             hexpand=True,
-            css_classes=["osd-dismiss"],
+            css_classes=["notification-popup-dismiss"],
             on_click=lambda x: setattr(self, "visible", False),
         )
         end_dismiss_button = widgets.Button(
             vexpand=True,
             hexpand=True,
-            css_classes=["osd-dismiss"],
+            css_classes=["notification-popup-dismiss"],
             on_click=lambda x: setattr(self, "visible", False),
         )
         super().__init__(
@@ -116,7 +116,7 @@ class NotificationPopup(widgets.RevealerWindow):
             popup=True,
             kb_mode="none",
             layer="overlay",
-            css_classes=["osd-window"],
+            css_classes=["notification-popup-window"],
             anchor=["top", "bottom", "right"],
             monitor=monitor,
             namespace=f"ignis_NOTIFICATION_POPUP_{monitor}",

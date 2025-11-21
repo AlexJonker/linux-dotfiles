@@ -15,8 +15,20 @@
     }
 }
 
-.osd-corner-up,
-.osd-corner-down {
+.notification-popup-corner-up,
+.notification-popup-corner-down {
     color:$surface;
     margin-left: 27rem;
+}
+
+.notification-popup-dismiss {
+    all: unset;
+    background: transparent;
+}
+
+.notification-popup-box {
+    background: $surface;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 10px;
 }
