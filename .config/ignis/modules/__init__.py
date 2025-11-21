@@ -1,4 +1,5 @@
 from .bar import Bar
+from .clock import Clock
 from .control_center import ControlCenter
 from .launcher import Launcher
 from .notification_popup import NotificationPopup
@@ -8,6 +9,7 @@ from .settings import Settings
 
 __all__ = [
     "Bar",
+    "Clock",
     "ControlCenter",
     "Launcher",
     "NotificationPopup",

@@ -3,6 +3,7 @@ from ignis import utils
 from ignis.services.wallpaper import WallpaperService
 from modules import (
     Bar,
+    Clock,
     ControlCenter,
     Launcher,
     NotificationPopup,
@@ -53,6 +54,7 @@ css_manager.apply_css(
 
 icon_manager.add_icons(os.path.join(utils.get_current_dir(), "icons"))
 
+Clock()
 ControlCenter()
 
 for monitor in range(utils.get_n_monitors()):

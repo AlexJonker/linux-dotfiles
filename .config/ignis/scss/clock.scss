@@ -1,0 +1,20 @@
+.clock-window {
+    background-color: transparent;
+}
+
+.clock-widget {
+    margin-top: 2rem;
+}
+
+.clock-time {
+    font-size: 6rem;
+    font-weight: bold;
+    color: $onSurface;
+}
+
+.clock-date {
+    font-size: 2rem;
+    font-weight: normal;
+    color: $onSurfaceVariant;
+    margin-top: 0.5rem;
+}
