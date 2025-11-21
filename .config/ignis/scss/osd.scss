@@ -1,8 +1,80 @@
-.osd {
-    @include window;
-    min-width: 15rem;
-    margin-bottom: 5rem;
+.osd-window {
     * {
-        all: unset
+        background: unset;
     }
+
+    background: unset;
+}
+
+.osd-dismiss {
+    all: unset;
+    background: transparent;
+}
+
+.osd-box {
+    background: $surface;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 10px;
+}
+
+.osd-corner-up,
+.osd-corner-down {
+    color: $surface;
+}
+
+.osd-corner-up {
+    margin-left: 28px;
+}
+
+.osd-corner-down {
+    margin-left: 28px;
+}
+
+.osd-icon-box {
+    min-height: 3.5rem;
+    min-width: 3rem;
+    border-radius: 16px;
+    background: darken($primary, 10%);
+}
+
+.osd-slider-container {
+    min-height: 200px;
+}
+
+.osd-scale {
+    min-width: 8px;
+    min-height: 200px;
+    padding: 4px;
+    border-radius: 25px;
+}
+
+.osd-scale {
+    all: unset;
+
+    * {
+        all: unset;
+    }
+}
+
+.osd-scale trough {
+    background-color: $secondaryContainer;
+    border-radius: 1rem;
+    min-width: 8px;
+    min-height: 200px;
+}
+
+.osd-scale trough highlight {
+    background: darken($primary, 10%);
+    border-radius: 1rem;
+}
+
+.osd-scale slider {
+    min-width: 20px;
+    min-height: 20px;
+    border-radius: 50%;
+}
+
+.osd-percentage {
+    margin-top: 0.5rem;
 }
