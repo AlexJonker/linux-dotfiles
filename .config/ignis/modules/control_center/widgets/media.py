@@ -190,8 +190,13 @@ class Player(widgets.Revealer):
         else:
             art_url = self._player.art_url
 
-        colors = material.get_colors_from_img(art_url, True)
-        colors["art_url"] = art_url
+        try:
+            colors = material.get_colors_from_img(art_url, True)
+            colors["art_url"] = art_url
+        except Exception:
+            colors = material.get_colors_from_img(MEDIA_ART_FALLBACK, True)
+            colors["art_url"] = MEDIA_ART_FALLBACK
+        
         colors["desktop_entry"] = self.clean_desktop_entry()
 
         with open(MEDIA_TEMPLATE) as file:
