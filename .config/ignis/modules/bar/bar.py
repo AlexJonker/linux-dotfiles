@@ -1,5 +1,5 @@
 from ignis import widgets
-from .widgets import StatusPill, Tray, KeyboardLayout, Battery, Apps, Workspaces, Media
+from .widgets import StatusPill, Tray, Battery, Apps, Workspaces, Media
 
 
 class Bar(widgets.Window):
@@ -15,11 +15,11 @@ class Bar(widgets.Window):
             kb_mode="none",
             child=widgets.CenterBox(
                 css_classes=["bar-widget"],
-                start_widget=widgets.Box(child=[Workspaces()]),
+                start_widget=widgets.Box(child=[Apps(), Workspaces()]),
                 center_widget=widgets.Box(child=[Media()]),
                 # center_widget=widgets.Box(child=[Media(), Apps()]),
                 end_widget=widgets.Box(
-                    child=[Tray(), KeyboardLayout(), Battery(), StatusPill(monitor)]
+                    child=[Tray(), Battery(), StatusPill(monitor)]
                 ),
             ),
             css_classes=["unset"],
