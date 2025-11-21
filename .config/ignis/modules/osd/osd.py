@@ -26,6 +26,13 @@ class OSD(widgets.Window):
                 ],
             ),
         )
+        
+        audio.speaker.connect("notify::volume", lambda *args: self.__show_osd())
+        audio.speaker.connect("notify::is-muted", lambda *args: self.__show_osd())
+
+    def __show_osd(self) -> None:
+        super().set_property("visible", True)
+        self.__update_visible()
 
     def set_property(self, property_name, value):
         if property_name == "visible":

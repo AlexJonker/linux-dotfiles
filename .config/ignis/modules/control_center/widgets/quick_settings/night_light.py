@@ -3,7 +3,6 @@ from user_options import user_options
 from ignis import utils
 
 def toggle_night_light(enabled: bool) -> None:
-    """Toggle night light on/off"""
     user_options.night_light.set_enabled(enabled)
 
     if enabled:
