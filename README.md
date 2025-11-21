@@ -12,7 +12,7 @@
 - **[this](https://github.com/eylles/pywal16-libadwaita/issues/10) in the install script**
 - **Power Profiles daemon**
 - **Fix Bluetooth not showing**
-
+- **Macos like buttom bar for apps**
 ---
 
 ## Installation Guide

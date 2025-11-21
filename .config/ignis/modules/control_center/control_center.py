@@ -15,11 +15,11 @@ window_manager = WindowManager.get_default()
 
 class ControlCenter(widgets.RevealerWindow):
     def __init__(self):
-        # OSD-style content box
+        # control-center-style content box
         content = widgets.Box(
             vertical=True,
             spacing=8,
-            css_classes=["osd-box"],
+            css_classes=["control-center-box"],
             child=[
                 widgets.Box(
                     vertical=True,
@@ -43,14 +43,14 @@ class ControlCenter(widgets.RevealerWindow):
             ],
         )
 
-        # Create revealer with content - corners outside osd-box
+        # Create revealer with content - corners outside control-center-box
         revealer = widgets.Revealer(
             transition_type="slide_left",
             child=widgets.Box(
                 vertical=True,
                 child=[
                     widgets.Box(
-                        css_classes=["osd-corner-up"],
+                        css_classes=["control-center-corner-up"],
                         child=[
                             Corner(
                                 orientation="bottom-right",
@@ -61,7 +61,7 @@ class ControlCenter(widgets.RevealerWindow):
                     ),
                     content,
                     widgets.Box(
-                        css_classes=["osd-corner-down"],
+                        css_classes=["control-center-corner-down"],
                         child=[
                             Corner(
                                 orientation="top-right",
@@ -75,17 +75,17 @@ class ControlCenter(widgets.RevealerWindow):
             transition_duration=300,
             reveal_child=False,
         )
-        # OSD-style dismiss buttons
+        # control-center-style dismiss buttons
         start_dismiss_button = widgets.Button(
             vexpand=True,
             hexpand=True,
-            css_classes=["osd-dismiss"],
+            css_classes=["control-center-dismiss"],
             on_click=lambda x: setattr(self, "visible", False),
         )
         end_dismiss_button = widgets.Button(
             vexpand=True,
             hexpand=True,
-            css_classes=["osd-dismiss"],
+            css_classes=["control-center-dismiss"],
             on_click=lambda x: setattr(self, "visible", False),
         )
         super().__init__(

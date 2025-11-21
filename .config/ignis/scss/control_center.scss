@@ -173,8 +173,20 @@
     }
 }
 
-.osd-corner-up,
-.osd-corner-down {
+.control-center-corner-up,
+.control-center-corner-down {
     color:$surface;
     margin-left: 30rem;
+}
+
+.control-center-dismiss {
+    all: unset;
+    background: transparent;
+}
+
+.control-center-box {
+    background: $surface;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 10px;
 }
