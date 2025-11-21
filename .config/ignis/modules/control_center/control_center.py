@@ -36,7 +36,7 @@ class ControlCenter(widgets.RevealerWindow):
                 ],
             ),
             transition_duration=300,
-            reveal_child=True,
+            reveal_child=False,
         )
 
         super().__init__(
@@ -59,7 +59,14 @@ class ControlCenter(widgets.RevealerWindow):
                 ],
             ),
             setup=lambda self: self.connect(
-                "notify::visible", lambda x, y: opened_menu.set_value("")
+                "notify::visible", lambda x, y: self.__on_visibility_change(x, y, revealer)
             ),
             revealer=revealer,
         )
+
+    def __on_visibility_change(self, window, param, revealer):
+        if self.visible:
+            revealer.reveal_child = True
+        else:
+            opened_menu.set_value("")
+            revealer.reveal_child = False
