@@ -10,6 +10,8 @@
 ## TODO
 - **Correct adw-gtk3 theme (both dark now)**
 - **[this](https://github.com/eylles/pywal16-libadwaita/issues/10) in the install script**
+- **Power Profiles daemon**
+- **Bluetooth**
 
 ---
 
