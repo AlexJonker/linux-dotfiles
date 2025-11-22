@@ -14,6 +14,7 @@
 - **Fix Bluetooth not showing**
 - **Macos like buttom bar for apps**
 - **Fix control center opening animation**
+- **Fix Notifications menu**
 ---
 
 ## Installation Guide
