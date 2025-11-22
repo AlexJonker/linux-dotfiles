@@ -78,6 +78,8 @@ class NotificationPopup(widgets.RevealerWindow):
                 vertical=True,
                 child=[
                     widgets.Box(
+                        halign="end",
+                        valign="end",
                         css_classes=["notification-popup-corner-up"],
                         child=[
                             Corner(
@@ -89,6 +91,8 @@ class NotificationPopup(widgets.RevealerWindow):
                     ),
                     content,
                     widgets.Box(
+                        halign="end",
+                        valign="end",
                         css_classes=["notification-popup-corner-down"],
                         child=[
                             Corner(

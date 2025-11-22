@@ -69,17 +69,21 @@ class ControlCenter(widgets.RevealerWindow):
         revealer = widgets.Revealer(
             transition_type="slide_down",
             child=widgets.Box(
-                vertical=True,
+                vertical=False,
                 child=[
-                    widgets.Box(
-                        css_classes=["control-center-corner-up"],
-                        child=[Corner(orientation="bottom-right", width_request=40, height_request=40)],
-                    ),
+                        widgets.Box(
+                            css_classes=["control-center-corner-right"],
+                            halign="start",
+                            valign="start",
+                            child=[Corner(orientation="top-right", width_request=40, height_request=40)],
+                        ),
                     content,
-                    widgets.Box(
-                        css_classes=["control-center-corner-down"],
-                        child=[Corner(orientation="top-right", width_request=40, height_request=40)],
-                    ),
+                        widgets.Box(
+                            css_classes=["control-center-corner-left"],
+                            halign="start",
+                            valign="start",
+                            child=[Corner(orientation="top-left", width_request=40, height_request=40)],
+                        ),
                 ],
             ),
             transition_duration=300,

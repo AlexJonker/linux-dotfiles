@@ -195,22 +195,16 @@
     }
 }
 
-.control-center-corner-up,
-.control-center-corner-down {
+.control-center-corner-right,
+.control-center-corner-left {
     color: $surface;
-    margin-left: 30rem;
-}
-
-.control-center-dismiss {
-    all: unset;
-    background: transparent;
 }
 
 .control-center-box {
     background: $surface;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     padding: 10px;
 }

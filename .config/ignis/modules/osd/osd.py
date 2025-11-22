@@ -71,6 +71,8 @@ class OsdWindow(widgets.RevealerWindow):
                 vertical=True,
                 child=[
                     widgets.Box(
+                        halign="end",
+                        valign="end",
                         css_classes=["osd-corner-up"],
                         child=[
                             Corner(
@@ -82,6 +84,8 @@ class OsdWindow(widgets.RevealerWindow):
                     ),
                     content,
                     widgets.Box(
+                        halign="end",
+                        valign="end",
                         css_classes=["osd-corner-down"],
                         child=[
                             Corner(
