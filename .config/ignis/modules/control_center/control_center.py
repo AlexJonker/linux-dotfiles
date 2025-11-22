@@ -90,36 +90,30 @@ class ControlCenter(widgets.RevealerWindow):
             reveal_child=False,
         )
 
-        # Dismiss buttons
-        dismiss_button = widgets.Button(
-            vexpand=True,
-            hexpand=True,
-            css_classes=["control-center-dismiss"],
-            on_click=lambda x: setattr(self, "visible", False),
-        )
-
         super().__init__(
             visible=False,
             popup=True,
             kb_mode="none",
             layer="overlay",
             css_classes=["control-window"],
-            anchor=["top"],
+            anchor=["top", "left", "right", "bottom"],
             namespace="ignis_CONTROL_CENTER",
-            child=widgets.CenterBox(
-                hexpand=True,
-                halign="center",
-                vexpand=True,
-                vertical=True,
-                start_widget=dismiss_button,
-                center_widget=widgets.Box(
-                    vertical=True,
-                    valign="start",
-                    halign="center",
-                    style="min-width: 40rem; min-height: 18rem;",
-                    child=[revealer],
+            child=widgets.Overlay(
+                child=widgets.Button(
+                    vexpand=True,
+                    hexpand=True,
+                    can_focus=False,
+                    on_click=lambda _: setattr(self, "visible", False),
                 ),
-                end_widget=dismiss_button,
+                overlays=[
+                    widgets.Box(
+                        vertical=True,
+                        valign="start",
+                        halign="center",
+                        style="min-width: 40rem; min-height: 18rem;",
+                        child=[revealer],
+                    )
+                ],
             ),
             revealer=revealer,
         )
