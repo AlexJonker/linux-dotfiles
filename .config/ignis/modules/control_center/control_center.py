@@ -128,6 +128,13 @@ class ControlCenter(widgets.RevealerWindow):
         self.connect("notify::visible", self.__on_visibility_change, revealer)
 
     def __on_visibility_change(self, window, param, revealer):
+        for win in getattr(window_manager, "_windows", {}).values():
+            if hasattr(win, "namespace") and str(getattr(win, "namespace", "")).startswith("ignis_BAR_"):
+                if self.visible:
+                    win.add_css_class("control-center-open")
+                else:
+                    win.remove_css_class("control-center-open")
+
         if self.visible:
             revealer.reveal_child = True
         else:

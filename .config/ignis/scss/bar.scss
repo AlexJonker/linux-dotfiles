@@ -6,6 +6,10 @@
     background-color: rgba($surface, 0.3);
 }
 
+.control-center-open .bar-widget {
+    background-color: $surface;
+}
+
 .clock {
     @include hover($surface);
     color: $onSurface;
