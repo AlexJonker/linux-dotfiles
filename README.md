@@ -13,6 +13,7 @@
 - **Power Profiles daemon**
 - **Fix Bluetooth not showing**
 - **Macos like buttom bar for apps**
+- **Fix control center opening animation**
 ---
 
 ## Installation Guide
