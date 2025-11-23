@@ -15,6 +15,7 @@
 - **Macos like buttom bar for apps**
 - **Fix control center opening animation**
 - **Fix Notifications menu**
+- **Implement dim by overlaying dark screen if screen brightness can't be set**
 ---
 
 ## Installation Guide
