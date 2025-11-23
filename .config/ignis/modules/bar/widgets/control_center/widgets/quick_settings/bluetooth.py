@@ -1,7 +1,7 @@
 from ignis import widgets
 from ...qs_button import QSButton
 from ...menu import Menu
-from ....shared_widgets import ToggleBox
+from modules.shared_widgets.toggle_box import ToggleBox
 from ignis.services.bluetooth import BluetoothService, BluetoothDevice
 
 bluetooth = BluetoothService.get_default()

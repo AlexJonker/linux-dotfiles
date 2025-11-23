@@ -4,7 +4,7 @@ from ignis import utils
 from ignis.services.audio import AudioService, Stream
 from typing import Literal
 from ..menu import Menu
-from ...shared_widgets import MaterialVolumeSlider
+from modules.shared_widgets.volume_slider import MaterialVolumeSlider
 
 audio = AudioService.get_default()
 

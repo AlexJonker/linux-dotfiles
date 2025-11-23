@@ -14,9 +14,9 @@ mpris = MprisService.get_default()
 css_manager = CssManager.get_default()
 material = MaterialService.get_default()
 
-MEDIA_TEMPLATE = utils.get_current_dir() + "/media.scss"
+MEDIA_TEMPLATE = utils.get_current_dir() + "/../../../../../scss/media.scss"
 MEDIA_SCSS_CACHE_DIR = ignis.CACHE_DIR + "/media"  # type: ignore
-MEDIA_ART_FALLBACK = utils.get_current_dir() + "/../../../misc/media-art-fallback.png"
+MEDIA_ART_FALLBACK = utils.get_current_dir() + "/../../../../../misc/media-art-fallback.png"
 os.makedirs(MEDIA_SCSS_CACHE_DIR, exist_ok=True)
 
 

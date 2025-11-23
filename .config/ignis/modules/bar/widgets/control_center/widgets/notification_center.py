@@ -2,7 +2,7 @@ from ignis import widgets
 from ignis.services.notifications import Notification, NotificationService
 from ignis import utils
 from gi.repository import GLib  # type: ignore
-from ...shared_widgets import NotificationWidget
+from modules.shared_widgets.notification import NotificationWidget
 
 notifications = NotificationService.get_default()
 

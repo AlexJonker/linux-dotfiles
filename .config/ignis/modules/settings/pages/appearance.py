@@ -5,7 +5,7 @@ from ignis import widgets
 from user_options import user_options
 from ignis.options import options
 from gi.repository import GLib
-from modules.control_center.widgets.quick_settings.night_light import (
+from modules.bar.widgets.control_center.widgets.quick_settings.night_light import (
     toggle_night_light,
     update_temperature
 )

@@ -1,6 +1,6 @@
 from .bar import Bar
 from .clock import Clock
-from .control_center import ControlCenter
+from .bar.widgets.control_center import ControlCenter
 from .launcher import Launcher
 from .notification_popup import NotificationPopup
 from .osd import OSD

@@ -3,7 +3,7 @@ from ignis import widgets
 from ignis import utils
 from ...qs_button import QSButton
 from ...menu import Menu
-from ....shared_widgets import ToggleBox
+from modules.shared_widgets.toggle_box import ToggleBox
 from ignis.services.network import NetworkService, WifiAccessPoint, WifiDevice
 
 network = NetworkService.get_default()
