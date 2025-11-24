@@ -77,6 +77,7 @@ class NotificationCenter(widgets.Box):
         super().__init__(
             vertical=True,
             vexpand=True,
+            height_request=600,
             css_classes=["notification-center"],
             child=[
                 widgets.Box(
