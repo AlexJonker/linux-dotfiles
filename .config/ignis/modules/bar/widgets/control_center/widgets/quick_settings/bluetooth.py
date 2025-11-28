@@ -84,4 +84,6 @@ class BluetoothButton(QSButton):
 
 
 def bluetooth_control() -> list[QSButton]:
-    return [] if bluetooth.state == "absent" else [BluetoothButton()]
+    bluetoothEnabled= bluetooth.connect("notify::state", lambda *_: print(bluetooth.state))
+    return [] if bluetoothEnabled == "absent" else [BluetoothButton()]
+    #return [] if bluetooth.state == "absent" else [BluetoothButton()] # This is how it used to be but is broken, maybe gets fixed eventually?
