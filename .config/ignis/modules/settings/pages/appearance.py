@@ -9,6 +9,8 @@ from modules.bar.widgets.control_center.widgets.quick_settings.night_light impor
     toggle_night_light,
     update_temperature
 )
+from misc.constants import HYPRLAND_WIDTH, HYPRLAND_HEIGHT
+
 
 material = MaterialService.get_default()
 
@@ -40,8 +42,8 @@ class AppearanceEntry(SettingsEntry):
                         widgets.ListBoxRow(
                             child=widgets.Picture(
                                 image=options.wallpaper.bind("wallpaper_path"),
-                                width=1920 // 4,
-                                height=1080 // 4,
+                                width=HYPRLAND_WIDTH // 4,
+                                height=HYPRLAND_HEIGHT // 4,
                                 halign="center",
                                 style="border-radius: 1rem;",
                                 content_fit="cover",

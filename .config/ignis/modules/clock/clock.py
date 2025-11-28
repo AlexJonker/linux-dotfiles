@@ -2,6 +2,8 @@ import datetime
 from ignis import widgets
 from ignis import utils
 from user_options import user_options
+from misc.constants import HYPRLAND_WIDTH, HYPRLAND_HEIGHT
+
 
 WIDGET_WIDTH = 260
 WIDGET_HEIGHT = 150
@@ -24,13 +26,10 @@ class Clock(widgets.RevealerWindow):
         )
 
         def percent_to_margin_x(percent: int) -> int:
-            screen_width = 1920  # TODO: get actual screen width
-            return int((screen_width - WIDGET_WIDTH) * percent / 100)
+            return int((HYPRLAND_WIDTH - WIDGET_WIDTH) * percent / 100)
 
         def percent_to_margin_y(percent: int) -> int:
-            screen_height = 1080  # TODO: get actual screen height
-            return int((screen_height - WIDGET_HEIGHT) * percent / 100)
-
+            return int((HYPRLAND_HEIGHT - WIDGET_HEIGHT) * percent / 100)
         box = widgets.Box(
             vertical=True,
             css_classes=["clock-widget"],

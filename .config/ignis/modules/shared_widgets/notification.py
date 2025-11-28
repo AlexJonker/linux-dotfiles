@@ -2,6 +2,7 @@ import asyncio
 from ignis import widgets
 from ignis.services.notifications import Notification
 from ignis import utils
+from misc.constants import HYPRLAND_WIDTH, HYPRLAND_HEIGHT
 
 
 class ScreenshotLayout(widgets.Box):
@@ -15,8 +16,8 @@ class ScreenshotLayout(widgets.Box):
                         widgets.Picture(
                             image=notification.icon,
                             content_fit="cover",
-                            width=1920 // 7,
-                            height=1080 // 7,
+                            width=HYPRLAND_WIDTH // 7,
+                            height=HYPRLAND_HEIGHT // 7,
                             style="border-radius: 1rem; background-color: black;",
                         ),
                         widgets.Button(
