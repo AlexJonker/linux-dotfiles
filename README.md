@@ -10,11 +10,6 @@
 ## TODO
 - **Correct adw-gtk3 theme (both dark now)**
 - **[this](https://github.com/eylles/pywal16-libadwaita/issues/10) in the install script**
-- **Power Profiles daemon**
-- **Fix Bluetooth not showing**
-- **Macos like buttom bar for apps**
-- **Fix control center opening animation**
-- **Implement dim by overlaying dark screen if screen brightness can't be set**
 ---
 
 ## Installation Guide
