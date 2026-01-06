@@ -39,13 +39,13 @@ class Apps(widgets.Box):
         super().__init__(
             child=applications.bind(
                 "pinned",
-                transform=lambda value: [AppItem(app) for app in value]
-                + [
+                transform=lambda value: [
                     widgets.Button(
                         child=widgets.Icon(image="start-here-symbolic", pixel_size=32),
                         on_click=lambda x: window_manager.toggle_window("ignis_LAUNCHER"),
                         css_classes=["pinned-app", "unset"],
-                    )
+                    ),
+                    *[AppItem(app) for app in value],
                 ],
             )
         )

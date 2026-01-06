@@ -15,7 +15,7 @@ class Bar(widgets.Window):
             kb_mode="none",
             child=widgets.CenterBox(
                 css_classes=["bar-widget"],
-                start_widget=widgets.Box(child=[Apps(), Workspaces()]),
+                start_widget=widgets.Box(child=[Workspaces(), Apps()]),
                 center_widget=widgets.Box(child=[Media()]),
                 # center_widget=widgets.Box(child=[Media(), Apps()]),
                 end_widget=widgets.Box(
