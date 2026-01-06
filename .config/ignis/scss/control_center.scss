@@ -138,6 +138,10 @@
         font-size: 1.35rem;
         margin-left: 0.75rem;
     }
+
+    .network-scroll {
+        min-height: 10rem;
+    }
     
     .network-item {
         @include hover($surfaceContainerHigh);
