@@ -29,15 +29,16 @@ class Popup(widgets.Revealer):
         utils.Timeout(50, self.set_reveal_child, True)
 
     def destroy(self):
-            self.reveal_child = False
-            def after_unparent():
-                if hasattr(self._box, 'get_child_widgets'):
-                    children = self._box.get_child_widgets()
-                else:
-                    children = []
-                if len(children) == 0:
-                    self._window.visible = False
-            utils.Timeout(self.transition_duration, lambda: (self.unparent(), after_unparent()))
+        self.reveal_child = False
+
+        def after_unparent():
+            children = getattr(self._box, "child", []) or []
+            if len(children) == 0:
+                self._window.visible = False
+
+        utils.Timeout(
+            self.transition_duration, lambda: (self.unparent(), after_unparent())
+        )
 
 
 class PopupBox(widgets.Box):
