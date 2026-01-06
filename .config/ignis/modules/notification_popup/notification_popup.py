@@ -4,12 +4,10 @@ from ignis.services.notifications import Notification, NotificationService
 from ..shared_widgets import NotificationWidget
 from ignis.widgets import Corner
 
-
-
 notifications = NotificationService.get_default()
 
 
-class Popup(widgets.Revealer):
+class Popup(widgets.Box):
     def __init__(
         self, box: "PopupBox", window: "NotificationPopup", notification: Notification
     ):
@@ -18,27 +16,27 @@ class Popup(widgets.Revealer):
 
         widget = NotificationWidget(notification)
         widget.css_classes = ["notification-popup"]
-        super().__init__(
-            transition_type="slide_left",
-            child=widget,
-            transition_duration=300,
-            reveal_child=False,
-        )
+
+        # Inner and outer animations
+        self._inner = widgets.Revealer(transition_type="slide_left", child=widget)
+        self._outer = widgets.Revealer(transition_type="slide_down", child=self._inner)
+        super().__init__(child=[self._outer], halign="end")
 
         notification.connect("dismissed", lambda x: self.destroy())
-        utils.Timeout(50, self.set_reveal_child, True)
 
     def destroy(self):
-        self.reveal_child = False
-
-        def after_unparent():
-            children = getattr(self._box, "child", []) or []
-            if len(children) == 0:
+        def box_destroy():
+            self.unparent()
+            if len(notifications.popups) == 0:
                 self._window.visible = False
 
-        utils.Timeout(
-            self.transition_duration, lambda: (self.unparent(), after_unparent())
-        )
+        def outer_close():
+            self._outer.reveal_child = False
+            utils.Timeout(self._outer.transition_duration, box_destroy)
+
+        self._inner.transition_type = "slide_right"
+        self._inner.reveal_child = False
+        utils.Timeout(self._outer.transition_duration, outer_close)
 
 
 class PopupBox(widgets.Box):
@@ -59,12 +57,17 @@ class PopupBox(widgets.Box):
         self._window.visible = True
         popup = Popup(box=self, window=self._window, notification=notification)
         self.prepend(popup)
+        popup._outer.reveal_child = True
+        utils.Timeout(
+            popup._outer.transition_duration, popup._inner.set_reveal_child, True
+        )
 
 
 class NotificationPopup(widgets.RevealerWindow):
     def __init__(self, monitor: int):
         self.popup_box = PopupBox(window=self, monitor=monitor)
-        # notification-popup-style content box
+
+        # Notification content box
         content = widgets.Box(
             vertical=True,
             spacing=8,
@@ -72,55 +75,60 @@ class NotificationPopup(widgets.RevealerWindow):
             child=[self.popup_box],
         )
 
-        # Create revealer with content - corners outside notification-popup-box
+        # Corners
+        content_with_corners = widgets.Box(
+            vertical=True,
+            child=[
+                widgets.Box(
+                    halign="end",
+                    valign="end",
+                    css_classes=["notification-popup-corner-up"],
+                    child=[
+                        Corner(
+                            orientation="bottom-right",
+                            width_request=40,
+                            height_request=40,
+                        )
+                    ],
+                ),
+                content,
+                widgets.Box(
+                    halign="end",
+                    valign="end",
+                    css_classes=["notification-popup-corner-down"],
+                    child=[
+                        Corner(
+                            orientation="top-right",
+                            width_request=40,
+                            height_request=40,
+                        )
+                    ],
+                ),
+            ],
+        )
+
+        # Content revealer
         self.content_revealer = widgets.Revealer(
             transition_type="slide_left",
-            child=widgets.Box(
-                vertical=True,
-                child=[
-                    widgets.Box(
-                        halign="end",
-                        valign="end",
-                        css_classes=["notification-popup-corner-up"],
-                        child=[
-                            Corner(
-                                orientation="bottom-right",
-                                width_request=40,
-                                height_request=40,
-                            )
-                        ],
-                    ),
-                    content,
-                    widgets.Box(
-                        halign="end",
-                        valign="end",
-                        css_classes=["notification-popup-corner-down"],
-                        child=[
-                            Corner(
-                                orientation="top-right",
-                                width_request=40,
-                                height_request=40,
-                            )
-                        ],
-                    ),
-                ],
-            ),
+            child=content_with_corners,
             transition_duration=300,
             reveal_child=False,
         )
-        # notification-popup-style dismiss buttons
-        start_dismiss_button = widgets.Button(
+
+        # Dismiss buttons
+        start_dismiss = widgets.Button(
             vexpand=True,
             hexpand=True,
             css_classes=["notification-popup-dismiss"],
             on_click=lambda x: setattr(self, "visible", False),
         )
-        end_dismiss_button = widgets.Button(
+        end_dismiss = widgets.Button(
             vexpand=True,
             hexpand=True,
             css_classes=["notification-popup-dismiss"],
             on_click=lambda x: setattr(self, "visible", False),
         )
+
         super().__init__(
             visible=False,
             popup=True,
@@ -135,14 +143,14 @@ class NotificationPopup(widgets.RevealerWindow):
                 halign="fill",
                 vexpand=True,
                 vertical=True,
-                start_widget=start_dismiss_button,
+                start_widget=start_dismiss,
                 center_widget=widgets.Box(
                     vertical=True,
                     valign="center",
                     halign="end",
                     child=[self.content_revealer],
                 ),
-                end_widget=end_dismiss_button,
+                end_widget=end_dismiss,
             ),
             revealer=self.content_revealer,
             dynamic_input_region=True,
