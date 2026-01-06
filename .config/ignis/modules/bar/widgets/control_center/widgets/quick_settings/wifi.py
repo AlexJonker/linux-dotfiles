@@ -38,6 +38,14 @@ class WifiNetworkItem(widgets.Button):
 
 class WifiMenu(Menu):
     def __init__(self, device: WifiDevice):
+        network_list = widgets.Box(
+            vertical=True,
+            child=device.bind(
+                "access_points",
+                transform=lambda value: [WifiNetworkItem(i) for i in value],
+            ),
+        )
+
         super().__init__(
             name="wifi",
             child=[
@@ -47,12 +55,9 @@ class WifiMenu(Menu):
                     on_change=lambda x, state: network.wifi.set_enabled(state),
                     css_classes=["network-header-box"],
                 ),
-                widgets.Box(
-                    vertical=True,
-                    child=device.bind(
-                        "access_points",
-                        transform=lambda value: [WifiNetworkItem(i) for i in value],
-                    ),
+                widgets.Scroll(
+                    child=network_list,
+                    css_classes=["network-scroll"],
                 ),
                 widgets.Separator(),
                 widgets.Button(

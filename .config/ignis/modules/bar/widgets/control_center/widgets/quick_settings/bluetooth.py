@@ -37,6 +37,14 @@ class BluetoothDeviceItem(widgets.Button):
 
 class BluetoothMenu(Menu):
     def __init__(self):
+        device_list = widgets.Box(
+            vertical=True,
+            child=bluetooth.bind(
+                "devices",
+                transform=lambda value: [BluetoothDeviceItem(i) for i in value],
+            ),
+        )
+
         super().__init__(
             name="bluetooth",
             child=[
@@ -46,12 +54,9 @@ class BluetoothMenu(Menu):
                     on_change=lambda x, state: bluetooth.set_powered(state),
                     css_classes=["network-header-box"],
                 ),
-                widgets.Box(
-                    vertical=True,
-                    child=bluetooth.bind(
-                        "devices",
-                        transform=lambda value: [BluetoothDeviceItem(i) for i in value],
-                    ),
+                widgets.Scroll(
+                    child=device_list,
+                    css_classes=["network-scroll"],
                 ),
             ],
         )

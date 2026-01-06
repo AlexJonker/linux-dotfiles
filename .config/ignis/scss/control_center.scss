@@ -160,6 +160,10 @@
         margin-left: 0.75rem;
     }
 
+    .network-scroll {
+        min-height: 300px;
+    }
+
     .network-item {
         @include hover($surfaceContainerHigh);
         transition: 0.3s;
