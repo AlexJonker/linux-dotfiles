@@ -167,7 +167,8 @@ class Player(widgets.Revealer):
         )
 
     def get_player_icon(self) -> str:
-        if self._player.desktop_entry == "firefox":
+        print(f"Getting icon for {self._player.desktop_entry}")
+        if self._player.desktop_entry == "firefox" or self._player.desktop_entry == "zen":
             return PLAYER_ICONS["firefox"]
         elif self._player.desktop_entry == "spotify":
             return PLAYER_ICONS["spotify"]
