@@ -1,7 +1,7 @@
 # Hyprland Dotfiles Setup
 
-<img src="./src/preview.png">
-<img src="./src/preview2.png">
+![img](./src/preview.png)
+![img](./src/preview2.png)
 
 ## FEATURES
 - **Dual monitor support for waybar**
@@ -33,3 +33,7 @@ After installation, reboot and run the `post-install.sh` script
 ```bash
 bash ./post-install.sh
 ```
+
+
+W.I.P.
+![img](./src/wip.png)
