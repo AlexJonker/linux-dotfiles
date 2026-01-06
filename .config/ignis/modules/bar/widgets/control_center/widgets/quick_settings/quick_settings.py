@@ -7,6 +7,7 @@ from .night_light import NightLightButton
 from .ethernet import ethernet_control
 from .vpn import vpn_control
 from .bluetooth import bluetooth_control
+from .power_profiles import power_profiles_control
 from ...qs_button import QSButton
 from ignis.services.network import NetworkService
 
@@ -32,6 +33,7 @@ class QuickSettings(widgets.Box):
             *ethernet_control(),
             *vpn_control(),
             *bluetooth_control(),
+            *power_profiles_control(),
             DNDButton(),
             DarkModeButton(),
             NightLightButton(),
