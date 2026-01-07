@@ -11,5 +11,6 @@ Bar styling I somewhat wanna follow:
 
 menu?
 ![img](./side.png)
+![img](./music_player.png)
 
 [github](https://github.com/snes19xx/surface-dots) - quickshell
