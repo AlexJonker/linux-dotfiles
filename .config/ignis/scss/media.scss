@@ -3,15 +3,35 @@
 
 .media-{{ desktop_entry }} {
     margin-top: 1rem;
+    border-radius: 1.4rem;
+    padding: 0;
+    min-height: 8rem;
+    background: linear-gradient(135deg, rgba({{ surface }}, 0.82) 0%, rgba({{ surfaceContainerHigh }}, 0.74) 100%);
 }
 
-
-.media-image-{{ desktop_entry }} {
+.media-cover-{{ desktop_entry }} {
+    min-width: 6rem;
+    min-height: 6rem;
+    border-radius: 1.15rem;
     background-image: url('file:///{{ art_url }}');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    min-height: 11rem;
+}
+
+.media-time-{{ desktop_entry }} {
+    color: rgba({{ onSurface }}, 0.72);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+
+.media-image-{{ desktop_entry }} {
+    background-image: url('file:///{{ blur_art_url }}');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 9rem;
     border-radius: 1.5rem;
 }
 
