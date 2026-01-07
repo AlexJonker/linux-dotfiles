@@ -353,7 +353,7 @@ class Player(widgets.Revealer):
 
         try:
             with Image.open(source_path) as img:
-                blurred = img.convert("RGB").filter(ImageFilter.GaussianBlur(radius=4))
+                blurred = img.convert("RGB").filter(ImageFilter.GaussianBlur(radius=16))
                 blurred.save(target_path, format="PNG")
             return target_path
         except Exception:
