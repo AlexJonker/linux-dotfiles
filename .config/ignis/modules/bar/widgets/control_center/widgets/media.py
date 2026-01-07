@@ -1,27 +1,66 @@
+import base64
+import mimetypes
 import os
+import re
 
 import ignis
 import asyncio
 import hashlib
 from PIL import Image, ImageFilter
 from ignis import widgets
-from ignis.services.mpris import MprisService, MprisPlayer
 from ignis import utils
 from services.material import MaterialService
 from jinja2 import Template
 from ignis.css_manager import CssManager, CssInfoString
-
-
-mpris = MprisService.get_default()
-css_manager = CssManager.get_default()
-material = MaterialService.get_default()
+from ignis.services.mpris import MprisService, MprisPlayer
 
 MEDIA_TEMPLATE = utils.get_current_dir() + "/../../../../../scss/media.scss"
 MEDIA_SCSS_CACHE_DIR = ignis.CACHE_DIR + "/media"  # type: ignore
 MEDIA_ART_FALLBACK = utils.get_current_dir() + "/../../../../../misc/media-art-fallback.png"
 MEDIA_BLUR_DIR = f"{MEDIA_SCSS_CACHE_DIR}/blurred"
+MEDIA_ART_CACHE_DIR = f"{MEDIA_SCSS_CACHE_DIR}/art"
 os.makedirs(MEDIA_SCSS_CACHE_DIR, exist_ok=True)
 os.makedirs(MEDIA_BLUR_DIR, exist_ok=True)
+os.makedirs(MEDIA_ART_CACHE_DIR, exist_ok=True)
+
+
+def _cache_data_uri(data_uri: str) -> str | None:
+    match = re.match(r"data:(image/[\w.+-]+);base64,(.+)", data_uri)
+    if not match:
+        return None
+
+    mime, b64_data = match.groups()
+    ext = mimetypes.guess_extension(mime) or ".img"
+    cache_key = hashlib.md5(b64_data.encode()).hexdigest()[:12]
+    cache_path = f"{MEDIA_ART_CACHE_DIR}/{cache_key}{ext}"
+
+    if os.path.exists(cache_path):
+        return cache_path
+
+    try:
+        with open(cache_path, "wb") as file:
+            file.write(base64.b64decode(b64_data, validate=True))
+        return cache_path
+    except Exception:
+        return None
+
+
+_original_loader = getattr(MprisPlayer, "_MprisPlayer__load_art_url", None)
+
+
+async def _patched_loader(self: MprisPlayer, art_url: str) -> str:
+    if art_url.startswith("data:image/"):
+        return _cache_data_uri(art_url) or MEDIA_ART_FALLBACK
+    return await _original_loader(self, art_url)
+
+
+if _original_loader and not getattr(MprisPlayer, "_data_uri_patched", False):
+    setattr(MprisPlayer, "_MprisPlayer__load_art_url", _patched_loader)
+    setattr(MprisPlayer, "_data_uri_patched", True)
+
+mpris = MprisService.get_default()
+css_manager = CssManager.get_default()
+material = MaterialService.get_default()
 
 
 PLAYER_ICONS = {
@@ -253,10 +292,7 @@ class Player(widgets.Revealer):
         return f"{class_name}-{self.clean_desktop_entry()}"
 
     def load_colors(self) -> None:
-        if not self._player.art_url:
-            art_url = MEDIA_ART_FALLBACK
-        else:
-            art_url = self._player.art_url
+        art_url = self._resolve_art_url()
 
         blurred_path = self._generate_blurred_art(art_url)
 
@@ -287,6 +323,19 @@ class Player(widgets.Revealer):
 
     def clean_desktop_entry(self) -> str:
         return self._player.desktop_entry.replace(".", "-")
+
+    def _resolve_art_url(self) -> str:
+        art_url = self._player.art_url
+        if not art_url:
+            return MEDIA_ART_FALLBACK
+
+        if art_url.startswith("data:image/"):
+            cached_path = _cache_data_uri(art_url)
+            if cached_path:
+                return cached_path
+            return MEDIA_ART_FALLBACK
+
+        return art_url
 
     def _generate_blurred_art(self, source_path: str) -> str:
         try:
