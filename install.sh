@@ -67,10 +67,6 @@ then
     # Enable sddm (simple login manager)
     sudo systemctl enable sddm
 
-    # Adjust Spotify permissions
-    sudo chmod a+wr /opt/spotify
-    sudo chmod a+wr /opt/spotify/Apps -R
-
     # Set SDDM theme configuration
     sudo mkdir -p /etc/sddm.conf.d/
 

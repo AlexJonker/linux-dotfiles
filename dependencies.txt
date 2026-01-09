@@ -4,10 +4,7 @@ hyprlock
 swaync
 waybar
 python-pywal16
-pywal-spicetify
 nwg-displays
-spicetify-cli
-spotify
 swww
 cliphist
 wl-clipboard

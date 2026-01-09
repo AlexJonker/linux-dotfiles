@@ -1,6 +1,5 @@
 #!/bin/bash
 sleep 2
-spicetify_theme=$(grep current_theme ~/.config/spicetify/config-xpui.ini | awk '{print $3}')
 wallpaper=$(swww query | grep -oP 'image:\s*\K.*' | head -n 1)
 
 echo "----------------------------------"
@@ -48,9 +47,4 @@ declare -A color_map=(
 for key in "${!color_map[@]}"; do
     sed -i "/^$key=/s|=.*|=\"${color_map[$key]}\"|" "$SDDM_THEME"
 done
-
-
-
-pywal-spicetify "$spicetify_theme"
-
 
