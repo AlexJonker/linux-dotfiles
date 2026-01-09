@@ -78,19 +78,39 @@ def get_desktop_info(desktop_path):
         pass
     return info
 
-def get_windows_class_names() -> None:
-    class_names = {}
-    for k, v in hyprland._windows.items():
-        class_names[k] = v._class_name
-    return class_names
+def get_window_workspace_id(window):
+    workspace = getattr(window, "workspace", None) or getattr(window, "_workspace", None)
+    if isinstance(workspace, HyprlandWorkspace):
+        return getattr(workspace, "id", None)
 
-def find_apps_data_best_match(class_names) -> None:
+    workspace_id = getattr(window, "workspace_id", None) or getattr(window, "_workspace_id", None)
+    if workspace_id is not None:
+        return workspace_id
+
+    if workspace:
+        return getattr(workspace, "_id", None)
+
+    return None
+
+
+def get_windows_info() -> None:
+    windows_info = {}
+    for win_id, window in hyprland._windows.items():
+        windows_info[win_id] = {
+            "class_name": window._class_name,
+            "workspace_id": get_window_workspace_id(window),
+        }
+    return windows_info
+
+def find_apps_data_best_match(windows_info) -> None:
     best_matched_apps = {}
-    best_match = None
-    for win_id, class_name in class_names.items():
-        app_data = find_app_data_best_match(class_name)
+    for win_id, info in windows_info.items():
+        app_data = find_app_data_best_match(info["class_name"])
         if app_data is not None:
-            best_matched_apps[win_id] = app_data
+            best_matched_apps[win_id] = {
+                **app_data,
+                "workspace_id": info["workspace_id"],
+            }
     return best_matched_apps
 
 def find_app_data_best_match(class_name) -> None:
@@ -127,14 +147,28 @@ class TaskList(widgets.Box):
         self.on_init()
     
     def on_init(self) -> None:
-        winid_class_names = get_windows_class_names()
-        self.running_apps = find_apps_data_best_match(winid_class_names)
+        windows_info = get_windows_info()
+        self.running_apps = find_apps_data_best_match(windows_info)
         self.sync()
         for k, v in hyprland._windows.items():
             self.bind_win_close_event(v)
+            self.bind_workspace_change_event(v)
 
     def bind_win_close_event(self, window):
         window.connect('closed', lambda win: self.on_win_closed(win))
+
+    def bind_workspace_change_event(self, window):
+        def handle_workspace_change(win, *args):
+            if win._address not in self.running_apps:
+                return
+            self.running_apps[win._address]["workspace_id"] = get_window_workspace_id(win)
+            self.sync()
+
+        for sig in ("notify::workspace-id", "notify::workspace_id"):
+            try:
+                window.connect(sig, handle_workspace_change)
+            except TypeError:
+                continue
     
     def on_win_closed(self, win):
         self.running_apps.pop(win._address, None)
@@ -146,12 +180,32 @@ class TaskList(widgets.Box):
             return
 
         self.bind_win_close_event(window)
-        self.running_apps[window._address] = new_app
+        self.bind_workspace_change_event(window)
+        self.running_apps[window._address] = {
+            **new_app,
+            "workspace_id": get_window_workspace_id(window),
+        }
         self.sync()
     
+    def refresh_workspace_ids(self) -> None:
+        for win_id in list(self.running_apps.keys()):
+            window = hyprland._windows.get(win_id)
+            if window is None:
+                continue
+            self.running_apps[win_id]["workspace_id"] = get_window_workspace_id(window)
+
     def sync(self):
+        self.refresh_workspace_ids()
         app_buttons = []
-        for win_id, app in self.running_apps.items():
+        sorted_apps = sorted(
+            self.running_apps.items(),
+            key=lambda item: (
+                item[1].get("workspace_id") is None,
+                item[1].get("workspace_id") if item[1].get("workspace_id") is not None else float("inf"),
+                item[0],
+            ),
+        )
+        for win_id, app in sorted_apps:
             app_buttons.append(create_app_button(app, win_id))
 
         self.child = app_buttons
