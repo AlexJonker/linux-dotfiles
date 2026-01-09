@@ -1,5 +1,5 @@
 from ignis import widgets
-from .widgets import StatusPill, Tray, Battery, Apps, Workspaces, Media
+from .widgets import StatusPill, Tray, Battery, Apps, Workspaces, Media, TaskList
 
 
 class Bar(widgets.Window):
@@ -15,9 +15,13 @@ class Bar(widgets.Window):
             kb_mode="none",
             child=widgets.CenterBox(
                 css_classes=["bar-widget"],
-                start_widget=widgets.Box(child=[Workspaces(), Apps()]),
+                    start_widget=widgets.Box(child=[
+                        Workspaces(),
+                        Apps(),
+                        widgets.Label(label="|", css_classes=["bar-divider"]),
+                        TaskList()
+                    ]), # Apps and TaskList to be moved to macos-like bottom bar.
                 center_widget=widgets.Box(child=[Media()]),
-                # center_widget=widgets.Box(child=[Media(), Apps()]),
                 end_widget=widgets.Box(
                     child=[Tray(), Battery(), StatusPill(monitor)]
                 ),
