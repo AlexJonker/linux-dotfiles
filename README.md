@@ -1,5 +1,5 @@
-# Hyprland Dotfiles Setup
-
+# Mangowc Dotfiles Setup
+For the hyprland dotfiles go [here](https://github.com/AlexJonker/linux-dotfiles/tree/Hyprland)
 ![img](./src/preview.png)
 ![img](./src/preview2.png)
 
