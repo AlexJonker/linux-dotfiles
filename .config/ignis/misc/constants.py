@@ -1,19 +1,27 @@
-import json
-import subprocess
+import subprocess, json
 
-def _get_hyprland_resolutions():
+def get_resolution(monitor_index=0):
     result = subprocess.run(
-        ["hyprctl", "monitors", "-j"],
+        ["wlr-randr", "--json"], # returns a lot of data so maybe even usable for gui display settings?
         stdout=subprocess.PIPE,
         text=True,
         check=True
     )
     monitors = json.loads(result.stdout)
-    resolutions = [(m["width"], m["height"]) for m in monitors]
-    return resolutions
+    monitor = monitors[monitor_index]
 
-HYPRLAND_RESOLUTIONS = _get_hyprland_resolutions()[0]
-HYPRLAND_HEIGHT = HYPRLAND_RESOLUTIONS[1]
-HYPRLAND_WIDTH = HYPRLAND_RESOLUTIONS[0]
+    # Find the mode with "current": true
+    current_mode = next((m for m in monitor["modes"] if m.get("current")), None)
+    if not current_mode:
+        raise RuntimeError(f"No current mode found for monitor {monitor_index}")
 
-print(f"Detected Hyprland resolution: {HYPRLAND_WIDTH}x{HYPRLAND_HEIGHT}")
+    return current_mode["width"], current_mode["height"]
+
+WIDTH, HEIGHT = get_resolution()
+
+
+SCREEN_HEIGHT = HEIGHT
+SCREEN_WIDTH = WIDTH
+
+
+print(f"Detected resolution: {SCREEN_WIDTH}x{SCREEN_HEIGHT}")
