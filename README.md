@@ -33,7 +33,3 @@ After installation, reboot and run the `post-install.sh` script
 ```bash
 bash ./post-install.sh
 ```
-
-
-W.I.P.
-![img](./src/wip.png)
