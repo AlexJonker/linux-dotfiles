@@ -20,7 +20,7 @@ For the hyprland dotfiles go [here](https://github.com/AlexJonker/linux-dotfiles
 
 ```bash
 # Clone the Hyprland dotfiles repository
-git clone https://github.com/AlexJonker/linux-dotfiles
+git clone https://github.com/AlexJonker/linux-dotfiles --depth 1
 cd linux-dotfiles
 
 # Run the install script
